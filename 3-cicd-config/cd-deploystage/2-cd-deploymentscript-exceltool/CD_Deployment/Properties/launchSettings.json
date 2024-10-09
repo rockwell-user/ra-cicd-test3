@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CD_Deployment": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Lab Files\\Scripts\\CFPlusSDK_FlashModuleWorkbook.xlsx\" \"C:\\Lab Files\\Device Management\\ACD File\\Working\""
+    }
+  }
+}
