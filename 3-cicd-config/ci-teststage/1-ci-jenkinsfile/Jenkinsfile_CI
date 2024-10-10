@@ -88,6 +88,28 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
+                    def trimFinalTextReportBanner(folderPath) {
+                        def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
+                        if (fileList.size() > 0) {
+                            def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
+
+                            // Get file contents
+                            def fileContents = readFile(mostRecentFilePath).trim()
+
+                            // Get the last 9 characters of the string
+                            def lastNineChars = fileContents[-9..-1]
+                            echo lastNineChars
+                            // Remove the ']', '=', and '-' characters
+                            def result = lastNineChars.replaceAll("[\\]=-]", "")
+                            echo result
+                            return result
+                        } else {
+                            echo "No text files found in the folder: ${folderPath}"
+
+                            return "ERROR: no file found."
+                        }
+                    }
+
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
                         returnStdout: true
@@ -109,7 +131,7 @@ pipeline {
 
                     echo "first test result: ${testFinalResult}"
 
-                    TEST_RESULT = testFinalResult
+                    env.TEST_RESULT = testFinalResult
                     echo "second test result: ${env.TEST_RESULT}"
 
                     // Assign value using withEnv
@@ -199,24 +221,3 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     }
 }
 
-def trimFinalTextReportBanner(folderPath) {
-    def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
-    if (fileList.size() > 0) {
-        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
-
-        // Get file contents
-        def fileContents = readFile(mostRecentFilePath).trim()
-
-        // Get the last 9 characters of the string
-        def lastNineChars = fileContents[-9..-1]
-        echo lastNineChars
-        // Remove the ']', '=', and '-' characters
-        def result = lastNineChars.replaceAll("[\\]=-]", "")
-        echo result
-        return result
-    } else {
-        echo "No text files found in the folder: ${folderPath}"
-
-        return "ERROR: no file found."
-    }
-}
