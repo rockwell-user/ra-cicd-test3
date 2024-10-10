@@ -111,7 +111,7 @@ pipeline {
                     )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
                     echo env.TEST_RESULT
                 }
@@ -207,10 +207,10 @@ def trimFinalTextReportBanner(folderPath) {
 
         // Get the last 11 characters of the string
         def lastEleven = lines[-9..-1]
-
+        echo lastEleven
         // Remove the ']', '=', and '-' characters
         def result = lastEleven.replaceAll("[\\]=-]", "")
-        
+        echo result
         return result
     } else {
         echo "No text files found in the folder: ${folderPath}"
