@@ -60,10 +60,8 @@ pipeline {
                     echo "env.FINAL_TEST_RESULT build1: ${env.FINAL_TEST_RESULT}"
                     env.FINAL_TEST_RESULT = 'test2'
                     echo "env.FINAL_TEST_RESULT build2: ${env.FINAL_TEST_RESULT}"
-                    env.FINAL_TEST_RESULT = "test3"
-                    echo "env.FINAL_TEST_RESULT build3: ${env.FINAL_TEST_RESULT}"
-                    env.FINAL_TEST_RESULT = "@test4"
-                    echo "env.FINAL_TEST_RESULT build3: ${env.FINAL_TEST_RESULT}"
+                    FINAL_TEST_RESULT = "test3"
+                    echo "FINAL_TEST_RESULT build3: ${FINAL_TEST_RESULT}"
                 }
             }
         }
@@ -93,12 +91,8 @@ pipeline {
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     
                     // Assigning the value directly to env.FINAL_TEST_RESULT
-                    env.FINAL_TEST_RESULT = testFinalResult
+                    FINAL_TEST_RESULT = testFinalResult
 
-                    echo "env.FINAL_TEST_RESULT expression: ${env.FINAL_TEST_RESULT}"
-                    echo "testFinalResult expression: ${testFinalResult}"
-
-                    env.FINAL_TEST_RESULT = testFinalResult
                     echo "env.FINAL_TEST_RESULT expression: ${env.FINAL_TEST_RESULT}"
                     echo "testFinalResult expression: ${testFinalResult}"
                 }
@@ -108,8 +102,8 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
-                    echo "env.FINAL_TEST_RESULT expression: ${env.FINAL_TEST_RESULT}"
-                    if (env.FINAL_TEST_RESULT == 'PASS') {
+                    echo "FINAL_TEST_RESULT expression: ${FINAL_TEST_RESULT}"
+                    if (FINAL_TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
