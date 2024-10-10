@@ -109,13 +109,14 @@ pipeline {
 
                     echo "first test result: ${testFinalResult}"
 
+                    TEST_RESULT = testFinalResult
+                    echo "second test result: ${env.TEST_RESULT}"
+
                     // Assign value using withEnv
                     withEnv(["TEST_RESULT=${testFinalResult}"]) {
                         echo "second test result: ${env.TEST_RESULT}"
                     }
                 }
-
-                env.TEST_RESULT = testFinalResult
             }
         }
         stage('Release') {
