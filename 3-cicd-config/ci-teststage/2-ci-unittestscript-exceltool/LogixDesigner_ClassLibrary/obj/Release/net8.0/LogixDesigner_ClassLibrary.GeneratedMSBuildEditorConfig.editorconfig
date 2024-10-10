@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LogixDesigner_ClassLibrary
-build_property.ProjectDir = C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\2-ci-unittestscript-exceltool\LogixDesigner_ClassLibrary\
+build_property.ProjectDir = C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\2-ci-unittestscript-exceltool\LogixDesigner_ClassLibrary\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

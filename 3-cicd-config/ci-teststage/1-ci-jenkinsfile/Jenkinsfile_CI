@@ -3,13 +3,13 @@ pipeline {
     
     environment {
         PATH_JENKINS_GITHUB = "C:\\data\\jenkins_home\\workspace\\${env.JOB_NAME}\\"
-        ACDFILENAME = 'CICD_test.ACD'
+        INPUTEXCELFILENAME = 'AOIUnitTestInput_WetBulbTemperature.xlsx'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
-        GITHUB_REPO_NAME = 'ra-cicd-test-old'
-        GITHUB_DEV_BRANCH = 'dev-branch'
-        GITHUB_RELEASE_BRANCH = 'release-branch'
+        GITHUB_REPO_NAME = 'ra-cicd-test3'
+        GITHUB_DEV_BRANCH = 'feature/engr-1'
+        GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
@@ -76,7 +76,7 @@ pipeline {
                     bat """
                         del C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config
                         git config --global http.sslbackend schannel
-                        cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
+                        cd %PATH_JENKINS_GITHUB%3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool
                         dotnet build --configuration Release
                     """
                 }
@@ -98,18 +98,32 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
-                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
+                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
+                    def tempOutputFile = 'output.log'
+                    def tempErrorFile = 'error.log'
                     
-                    testResult = bat(
-                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.ACDFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
-                        returnStdout: true
-                    ).trim()
+                    // PowerShell script to run the executable and log output
+                    def psScript = """
+                    \$process = Start-Process -FilePath "${executable_filePath}" -ArgumentList "${env.PATH_JENKINS_GITHUB}", "${env.INPUTEXCELFILENAME}", "${env.GITHUB_USER_NAME}", "${env.GITHUB_USER_EMAIL}", "${message_RecentCommit}", "${hash_RecentCommit}", "${env.JOB_NAME}", "${env.BUILD_NUMBER}" -NoNewWindow -RedirectStandardOutput ${tempOutputFile} -RedirectStandardError ${tempErrorFile} -PassThru
+                    \$process.WaitForExit()
+                    Get-Content ${tempOutputFile} | ForEach-Object { Write-Host \$_ }
+                    Get-Content ${tempErrorFile} | ForEach-Object { Write-Host \$_ }
+                    """
 
-                    TEST_RESULT = testResult
-                    echo "Test result is: \n${testResult}"
+                    powershell(
+                        script: psScript,
+                        returnStatus: true
+                    )
 
-                    if ((testResult == 'SUCCESS') || (testResult == 'FAILURE')) {
-                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
+                    // Read the captured output from the temporary files
+                    def testResult = readFile(tempOutputFile).trim()
+                    def errorResult = readFile(tempErrorFile).trim()
+
+                    // Get the last 7 characters of the console output, returning either SUCCESS or FAILURE
+                    TEST_RESULT = testResult[-7..-1]
+
+                    if ((TEST_RESULT == 'SUCCESS') || (TEST_RESULT == 'FAILURE')) {
+                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     }
                 }
             }
@@ -131,10 +145,10 @@ pipeline {
                             git config --global core.autocrlf false
                             git config --global user.email ${env.GITHUB_USER_EMAIL}
                             git config --global user.name ${env.GITHUB_USER_NAME}
-                            git checkout --quiet ${env.GITHUB_DEV_BRANCH}
-                            git add -A
+                            git checkout -b ${env.GITHUB_DEV_BRANCH}
+                            git add .
                             git commit -m "${commit_message}"
-                            git push origin ${env.GITHUB_DEV_BRANCH}
+                            git push origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
 
                         """
                         // git checkout -b ${env.GITHUB_RELEASE_BRANCH}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7IM4rRUeM/0=",
+  "dgSpecHash": "wypfjNDZHLo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
+  "projectFilePath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
