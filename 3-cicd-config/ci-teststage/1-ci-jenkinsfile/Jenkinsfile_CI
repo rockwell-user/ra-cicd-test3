@@ -84,15 +84,14 @@ pipeline {
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
-                    echo testFinalResult
-                    // Assigning the value directly to env.TEST_RESULT
                     
+                    // Assigning the value directly to env.TEST_RESULT
                     env.TEST_RESULT = "PASS"
 
                     def result = (env.TEST_RESULT == testFinalResult)
                     echo "bool expression: ${result}"
                     echo "env.TEST_RESULT expression: ${env.TEST_RESULT}"
-                    echo "TEST_RESULT expression: ${TEST_RESULT}"
+                    echo "testFinalResult expression: ${testFinalResult}"
                 }
             }
         }

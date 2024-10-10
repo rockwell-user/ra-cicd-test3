@@ -175,8 +175,8 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
 
             // Convert a copy of the AOIDefinition.L5X into routine.L5X format, then import into the ACD application. 
             // The ladder logic rung contains an instance of the AOI instruction populated with any visible and/or required tags.
-            ConsoleMessage($"Print STATUS messages for AOI.L5X to rung.L5X conversion? Currently set to '{conversionPrintOut}'. To change, change the " +
-                $"value of the 'conversionPrintOut' static variable in the 'UnitTestScript_AOI.cs' file.", "STATUS");
+            ConsoleMessage($"Print STATUS messages for AOI.L5X to rung.L5X conversion? Currently set to '{conversionPrintOut}'. To change, toggle the " +
+                $"value of the 'conversionPrintOut' static boolean variable in the 'UnitTestScript_AOI.cs' file.", "STATUS");
             newAOIroutineL5XFilePath = CopyFile(iExcel_testObjectFilePath, generatedFilesFolderPath);
             ConvertAOIL5X_DEFINITIONtoROUTINE(newAOIroutineL5XFilePath, routineName_Event, programName_Cont, controllerName, conversionPrintOut);
 
