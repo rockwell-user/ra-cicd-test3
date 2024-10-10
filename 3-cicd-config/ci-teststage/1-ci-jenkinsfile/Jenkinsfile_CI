@@ -114,7 +114,7 @@ pipeline {
                             git checkout -b ${env.GITHUB_DEV_BRANCH}
                             git add .
                             git commit -m "${commit_message}"
-                            git push origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
+                            git push -f origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
 
                         """
                         // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
