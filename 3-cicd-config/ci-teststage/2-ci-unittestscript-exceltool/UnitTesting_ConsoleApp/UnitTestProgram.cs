@@ -166,13 +166,11 @@ namespace UnitTesting_ConsoleApp
             ConsoleMessage($"Set to retain '{numberOfGeneratedBAKFilesToRetain}' BAK files at '{temporaryFilesFolderPath}'", "STATUS");
             RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedBAKFilesToRetain, ".BAK");
 
-            CreateBanner("EXECUTION COMPLETE!");
-
             // Print out final banner based on test results.
             if (failureCondition > 0)
-                Console.WriteLine("FAILURE");
+                CreateBanner("UNIT TEST FINAL RESULT: PASS");
             else
-                Console.WriteLine("SUCCESS");
+                CreateBanner("UNIT TEST FINAL RESULT: FAIL");
         }
     }
 }

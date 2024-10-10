@@ -99,29 +99,13 @@ pipeline {
                     ).trim()
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
-                    def tempOutputFile = 'output.log'
-                    def tempErrorFile = 'error.log'
                     
-                    // PowerShell script to run the executable and log output
-                    def psScript = """
-                    \$process = Start-Process -FilePath "${executable_filePath}" -ArgumentList "${env.PATH_JENKINS_GITHUB}", "${env.INPUTEXCELFILENAME}", "${env.GITHUB_USER_NAME}", "${env.GITHUB_USER_EMAIL}", "${message_RecentCommit}", "${hash_RecentCommit}", "${env.JOB_NAME}", "${env.BUILD_NUMBER}" -NoNewWindow -RedirectStandardOutput ${tempOutputFile} -RedirectStandardError ${tempErrorFile} -PassThru
-                    \$process.WaitForExit()
-                    Get-Content ${tempOutputFile} | ForEach-Object { Write-Host \$_ }
-                    Get-Content ${tempErrorFile} | ForEach-Object { Write-Host \$_ }
-                    """
+                    bat(
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                    )
 
-                    powershell(script: psScript)
-
-                    // Read the captured output from the temporary files
-                    def testResult = readFile(tempOutputFile).trim()
-                    def errorResult = readFile(tempErrorFile).trim()
-
-                    // Get the last 7 characters of the console output, returning either SUCCESS or FAILURE
-                    TEST_RESULT = testResult[-7..-1]
-
-                    if ((TEST_RESULT == 'SUCCESS') || (TEST_RESULT == 'FAILURE')) {
-                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
-                    }
+                    // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
+                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")                    
                 }
             }
         }
@@ -189,7 +173,7 @@ pipeline {
 def createBanner(bannerName) {
     script {
         def finalBanner = '-=[' + bannerName + ']=-'
-        echo finalBanner.padRight(200, '-')
+        echo finalBanner.padRight(180, '-')
     }
 }
 
@@ -200,6 +184,28 @@ def displayContentsOfMostRecentTextFile(folderPath) {
         echo "The contents of the most recent test file (${mostRecentFile}):"
         def fileContents = readFile("${folderPath}\\${mostRecentFile}")
         echo "${fileContents}"
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+    }
+}
+
+def trimFinalTextReportBanner(folderPath) {
+    def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
+    if (fileList.size() > 0) {
+        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
+        
+        // Read all lines from the file
+        def lines = readFile(filePath).readLines()
+
+        // Get the final line
+        def finalLine = lines[-1]
+
+        // Get the last 11 characters of the string
+        def lastEleven = finalLine[-11..-1]
+
+        // Remove the ']', '=', and '-' characters
+        def result = lastEleven.replaceAll("[\\]=-]", "")
+        return result
     } else {
         echo "No text files found in the folder: ${folderPath}"
     }
