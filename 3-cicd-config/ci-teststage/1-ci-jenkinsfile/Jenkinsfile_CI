@@ -109,9 +109,10 @@ pipeline {
 
                     echo "first test result: ${testFinalResult}"
 
-                    env.TEST_RESULT = testFinalResult
-
-                    echo "second test result: ${env.TEST_RESULT}"
+                    // Assign value using withEnv
+                    withEnv(["TEST_RESULT=${testFinalResult}"]) {
+                        echo "second test result: ${env.TEST_RESULT}"
+                    }
                 }
             }
         }
