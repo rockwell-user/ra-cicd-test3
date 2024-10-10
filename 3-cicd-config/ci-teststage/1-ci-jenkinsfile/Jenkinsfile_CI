@@ -204,15 +204,11 @@ def trimFinalTextReportBanner(folderPath) {
         echo mostRecentFilePath
 
         // Read all lines from the file
-        def lines = readFile(mostRecentFilePath).split('\n')
+        def lines = readFile(mostRecentFilePath).trim()
         echo lines
 
-        // Get the final line
-        def finalLine = lines[-1].trim()
-        echo finalLine
-
         // Get the last 11 characters of the string
-        def lastEleven = finalLine[-11..-1]
+        def lastEleven = lines[-11..-1]
         echo lastEleven
 
         // Remove the ']', '=', and '-' characters
