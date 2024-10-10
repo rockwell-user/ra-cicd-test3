@@ -17,29 +17,7 @@ pipeline {
         GITHUB_USER_NAME = powershell(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
     }
-    // when {
-    //     expression {
-    //         def changeLogSets = currentBuild.changeSets
-    //         def folderChanged = false
-    //         for (int i = 0; i < changeLogSets.size(); i++) {
-    //             def entries = changeLogSets[i].items
-    //             for (int j = 0; j < entries.length; j++) {
-    //                 def entry = entries[j]
-    //                 def files = new ArrayList(entry.affectedFiles)
-    //                 for (int k = 0; k < files.size(); k++) {
-    //                     def file = files[k]
-    //                     if (file.path.contains("your/specific/folder")) {
-    //                         folderChanged = true
-    //                         break
-    //                     }
-    //                 }
-    //                 if (folderChanged) break
-    //             }
-    //             if (folderChanged) break
-    //         }
-    //         return folderChanged
-    //     }
-    // }
+
     stages {
         stage('Check .NET SDK') {
             steps {
@@ -88,27 +66,7 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
-                    def trimFinalTextReportBanner(folderPath) {
-                        def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
-                        if (fileList.size() > 0) {
-                            def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
 
-                            // Get file contents
-                            def fileContents = readFile(mostRecentFilePath).trim()
-
-                            // Get the last 9 characters of the string
-                            def lastNineChars = fileContents[-9..-1]
-                            echo lastNineChars
-                            // Remove the ']', '=', and '-' characters
-                            def result = lastNineChars.replaceAll("[\\]=-]", "")
-                            echo result
-                            return result
-                        } else {
-                            echo "No text files found in the folder: ${folderPath}"
-
-                            return "ERROR: no file found."
-                        }
-                    }
 
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
@@ -221,3 +179,24 @@ def displayContentsOfMostRecentTextFile(folderPath) {
     }
 }
 
+def trimFinalTextReportBanner(folderPath) {
+    def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
+    if (fileList.size() > 0) {
+        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
+
+        // Get file contents
+        def fileContents = readFile(mostRecentFilePath).trim()
+
+        // Get the last 9 characters of the string
+        def lastNineChars = fileContents[-9..-1]
+        echo lastNineChars
+        // Remove the ']', '=', and '-' characters
+        def result = lastNineChars.replaceAll("[\\]=-]", "")
+        echo result
+        return result
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+
+        return "ERROR: no file found."
+    }
+}
