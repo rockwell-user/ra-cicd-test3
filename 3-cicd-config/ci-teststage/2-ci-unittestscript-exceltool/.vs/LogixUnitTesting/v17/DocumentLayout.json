@@ -42,7 +42,8 @@
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\ConsoleFormat.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T22:45:47.8Z"
+              "WhenOpened": "2024-10-09T22:45:47.8Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,9 +53,10 @@
               "RelativeDocumentMoniker": "ConsoleFormatter_ClassLibrary\\FileManagement.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\FileManagement.cs",
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\FileManagement.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAqwEwAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAA6wEwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T22:33:40.22Z"
+              "WhenOpened": "2024-10-09T22:33:40.22Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -65,7 +67,8 @@
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-09T20:56:16.849Z"
+              "WhenOpened": "2024-10-09T20:56:16.849Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -75,7 +78,7 @@
               "RelativeDocumentMoniker": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAIAwwK0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAOwLEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T20:03:40.162Z",
               "EditorCaption": ""
@@ -88,9 +91,10 @@
               "RelativeDocumentMoniker": "UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAApwOUAAAB8AAAAAAAAAA==",
+              "ViewState": "AgIAAL4CAAAAAAAAAIApwNECAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T20:10:44.569Z"
+              "WhenOpened": "2024-10-09T20:10:44.569Z",
+              "EditorCaption": ""
             }
           ]
         },

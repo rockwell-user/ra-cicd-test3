@@ -19,7 +19,6 @@ using System.Drawing;
 using System.Text;
 using System.Xml.Linq;
 using static ConsoleFormatter_ClassLibrary.ConsoleFormatter;
-using static ConsoleFormatter_ClassLibrary.FileManagement;
 using static LogixDesigner_ClassLibrary.LogixDesigner;
 using static RockwellAutomation.LogixDesigner.LogixProject;
 using static UnitTesting_ConsoleApp.StartUnitTest;
@@ -720,9 +719,6 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
 
             // Print out final banner..
             CreateBanner("ENDING UNIT TEST");
-
-            // Stop logging the console output to the text file.
-            StopLogging();
 
             // Rename text file to include the target object name.
             string textFileReportPath = githubPath + @"4-test-reports\textreports\" + currentDateTime + "_unittestfile.txt";   // The text report file path (renamed here).

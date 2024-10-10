@@ -171,6 +171,9 @@ namespace UnitTesting_ConsoleApp
                 CreateBanner("UNIT TEST FINAL RESULT: FAIL");
             else
                 CreateBanner("UNIT TEST FINAL RESULT: PASS");
+
+            // Stop logging the console output to the text file.
+            StopLogging();
         }
     }
 }
