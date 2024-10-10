@@ -103,32 +103,34 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
-                    if (env.TEST_RESULT == 'PASS') {
-                        echo 'Test SUCCESS: Start releasing development results...'
-                        def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
-                        def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
-                        echo env.UNIQUE_LABEL
-                        def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
-                        bat """
-                            cd ${env.PATH_JENKINS_GITHUB}
-                            git remote set-url origin ${gitUrl}
-                            git config --global --add safe.directory "*"
-                            git config --global core.autocrlf false
-                            git config --global user.email ${env.GITHUB_USER_EMAIL}
-                            git config --global user.name ${env.GITHUB_USER_NAME}
-                            git checkout -b ${env.GITHUB_DEV_BRANCH}
-                            git add .
-                            git commit -m "${commit_message}"
-                            git push origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
+                    withEnv(["TEST_RESULT=${testFinalResult}"]) {
+                        if (env.TEST_RESULT == 'PASS') {
+                            echo 'Test SUCCESS: Start releasing development results...'
+                            def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
+                            def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                            echo env.UNIQUE_LABEL
+                            def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
+                            bat """
+                                cd ${env.PATH_JENKINS_GITHUB}
+                                git remote set-url origin ${gitUrl}
+                                git config --global --add safe.directory "*"
+                                git config --global core.autocrlf false
+                                git config --global user.email ${env.GITHUB_USER_EMAIL}
+                                git config --global user.name ${env.GITHUB_USER_NAME}
+                                git checkout -b ${env.GITHUB_DEV_BRANCH}
+                                git add .
+                                git commit -m "${commit_message}"
+                                git push origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
 
-                        """
-                        // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
-                        // git checkout --quiet ${env.GITHUB_DEV_BRANCH}
-                        // git add -A
-                        // git commit -m "${commit_message}"
-                    }
-                    else {
-                        echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
+                            """
+                            // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
+                            // git checkout --quiet ${env.GITHUB_DEV_BRANCH}
+                            // git add -A
+                            // git commit -m "${commit_message}"
+                        }
+                        else {
+                            echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
+                        }
                     }
                 }
                 
