@@ -100,10 +100,16 @@ pipeline {
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
                     
-                    testResult = bat(
-                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
+                    // Define a temporary file for capturing the output
+                    def tempOutputFile = 'output.log'
+
+                    bat(
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER} | tee ${tempOutputFile}", 
                         returnStdout: true
-                    ).trim()
+                    )
+)
+                    // Read the captured output from the temporary file
+                    def testResult = readFile(tempOutputFile).trim()
 
                     TEST_RESULT = testResult;
                     echo "Test result is: \n${testResult}"
