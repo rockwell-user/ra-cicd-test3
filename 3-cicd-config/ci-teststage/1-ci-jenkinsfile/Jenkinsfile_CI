@@ -89,10 +89,10 @@ pipeline {
                 
                 script {
 
-                    // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    // // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
+                    // env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
-                    echo env.TEST_RESULT
+                    // echo env.TEST_RESULT
 
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
