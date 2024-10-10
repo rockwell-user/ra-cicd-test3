@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uYBYyFLmzUc=",
+  "dgSpecHash": "A+t5XaSvc/U=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\5-standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc.core.api\\2.62.0\\grpc.core.api.2.62.0.nupkg.sha512",

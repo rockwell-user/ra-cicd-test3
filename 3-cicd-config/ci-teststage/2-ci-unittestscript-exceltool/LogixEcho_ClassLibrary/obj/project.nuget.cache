@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oIVdIzc+Pqo=",
+  "dgSpecHash": "UR6bfi+QA2c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\google.protobuf\\3.24.3\\google.protobuf.3.24.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\grpc\\2.46.6\\grpc.2.46.6.nupkg.sha512",

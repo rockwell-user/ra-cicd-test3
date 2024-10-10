@@ -181,5 +181,16 @@ namespace ConsoleFormatter_ClassLibrary
 
             return newSentence.ToString();
         }
+
+        /// <summary>
+        /// Create a banner used to identify the portion of the test being executed and write it to console.
+        /// </summary>
+        /// <param name="bannerName">The name displayed in the console banner.</param>
+        public static void CreateBanner(string bannerName)
+        {
+            string final_banner = "-=[" + bannerName + "]=---";
+            final_banner = final_banner.PadLeft(consoleCharLengthLimit, '-');
+            Console.WriteLine(final_banner);
+        }
     }
 }

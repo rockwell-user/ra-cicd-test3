@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj": {}
+    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
+    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
         "projectName": "ConsoleFormatter_ClassLibrary",
-        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
+        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj",
         "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\obj\\",
+        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj": {
+    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
         "projectName": "LogixDesigner_ClassLibrary",
-        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
+        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj",
         "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\obj\\",
+        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -90,8 +90,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
+              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
               }
             }
           }
@@ -136,14 +136,14 @@
         }
       }
     },
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "projectName": "LogixEcho_ClassLibrary",
-        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
+        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -203,14 +203,14 @@
         }
       }
     },
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj": {
+    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
+        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
         "projectName": "UnitTesting_ConsoleApp",
-        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
+        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\obj\\",
+        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -228,14 +228,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
+              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
               },
-              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj"
+              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj"
               },
-              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
+              "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
               }
             }
           }

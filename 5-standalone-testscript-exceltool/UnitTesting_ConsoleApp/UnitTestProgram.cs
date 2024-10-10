@@ -5,10 +5,11 @@
 // Author:       Rockwell Automation Engineering
 // Created:      2024
 // Description:  This script conducts unit testing utilizing Studio 5000 Logix Designer SDK and Factory Talk Logix Echo SDK.
-//               Valid unit test target objects: Add-On Instructions (AOI) Definition L5X, Program L5X, Routine L5X, Rung L5X or Application ACD files
+//               Valid unit test target objects: Add-On Instructions (AOI) Definition L5X
+//                     (target object example test scripts coming soon for Program L5X, Routine L5X, Rung L5X, and Application ACD files)
 //               Script outputs: detailed console updates, generated files needed to execute unit testing, & generated excel report
 //
-// The main program of this script takes 3 inputs:
+// The main program of this script takes 2 inputs:
 //   Input 1. The file path to the input excel sheet that defines the test target object and test cases.
 //   Input 2. The file path to the output excel sheet that contains the test results. (If no file path is provided, this scripts default behavior is to create
 //            a new excel file. The test results are programmatically added to the a new worksheet in that excel workbook. 

@@ -580,11 +580,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\5-standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
       "projectName": "LogixEcho_ClassLibrary",
-      "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+      "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\5-standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
       "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
+      "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\5-standalone-testscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",

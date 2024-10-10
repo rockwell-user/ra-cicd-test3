@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+a6aK+ziqII=",
+  "dgSpecHash": "QhRE1OP7LTw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
+  "projectFilePath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\5-standalone-testscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASYost\\.nuget\\packages\\epplus\\7.1.3\\epplus.7.1.3.nupkg.sha512",
     "C:\\Users\\ASYost\\.nuget\\packages\\epplus.interfaces\\6.1.1\\epplus.interfaces.6.1.1.nupkg.sha512",

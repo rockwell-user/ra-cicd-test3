@@ -19,8 +19,10 @@ using System.Drawing;
 using System.Text;
 using System.Xml.Linq;
 using static ConsoleFormatter_ClassLibrary.ConsoleFormatter;
+using static ConsoleFormatter_ClassLibrary.FileManagement;
 using static LogixDesigner_ClassLibrary.LogixDesigner;
 using static RockwellAutomation.LogixDesigner.LogixProject;
+using static UnitTesting_ConsoleApp.StartUnitTest;
 
 namespace UnitTesting_ConsoleApp.UnitTestScripts
 {
@@ -42,10 +44,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
                                                                                                definition & imported to the Studio 5000 application. */
         public static readonly string programName_FaultHandler = "PXX_FaultHandler"; // ------ Name of the fault handling program in the Studio 5k application.
         public static readonly string routineName_FaultHandler = "RXX_FaultHandler"; // ------ Name of the fault handling routine in the Studio 5k application.
-        public static readonly DateTime testStartTime = DateTime.Now; /* --------------------- The time during which this test was first initiated. 
-                                                                                               (Used at end of test to calculate unit test length.) */
-        public static readonly string currentDateTime = testStartTime.ToString("yyyyMMddHHmmss"); /* Time during which test was first initiated, as a string.
-                                                                                                     (Used to name generated files & test reports.)*/
+
         public static readonly bool conversionPrintOut = false; /* --------------------------- Making this true will print to console each step
                                                                                                taken when converting the AOI L5X to a rung L5X. */
         public static readonly bool showFullEventLog = false; /* ----------------------------- Capture and print event logger information to the console.
@@ -78,80 +77,20 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
         ///     </Fragment>
         /// </summary>
         /// <param name="args">
-        /// args[0] = The file path to the input excel sheet that defines the test target object and test cases.<br/>
-        /// args[1] = The file path to the output excel sheet that contains the test results.
+        /// Inputs from UnitTestProgram.
         /// </param>
         /// <returns></returns>
-        public static async Task RunTest(string[] args)
+        public static async Task<int?> RunTest(string[] args)
         {
             #region PARSE VARIABLES & INITIALIZE UNIT TEST
-            // A boolean value used to stop script if an issue parsing inputs is encountered.
-            bool issueWithScriptInputParsing = false;
+            CreateBanner("UNIT TEST INFO");
+            // Parse inputs
+            string githubPath = args[0];                                           // 1st incoming argument = GitHub folder path
+            string inputExcelFileName = args[1];                                   // 2nd incoming argument = excel file path
+            string inputExcelFilePath = githubPath + @"3-cicd-config\ci-teststage\3-ci-inputexcelworkbooks-forunittestscripts\" + inputExcelFileName;
 
-            // REQUIRED VALUE: input string 1
-            // The input excel workbook file path. (This file defines the test cases & how the unit test is conducted).
-            string inputArg_inputExcelFilePath = args[0];
-
-            // DEFAULT VALUE: input string 2
-            // If no output excel folder path is provided, use the below file path at which to create the test report.
-            // If an output excel folder path is provided, overwrite the below value.
-            string outputExcelFolderPath = Directory.GetParent(Path.GetDirectoryName(inputArg_inputExcelFilePath)!) + @"\X_UnitTestResults\";
-            if (args.Length == 1 && !Directory.Exists(outputExcelFolderPath))
-            {
-                Directory.CreateDirectory(outputExcelFolderPath); // If default output, folder 'UnitTestResults' created at input excel file's parent directory.
-            }
-            string inputArg_outputExcelFilePath = outputExcelFolderPath + currentDateTime + "_UnitTestReport.xlsx"; // This will be renamed later.
-
-            // Variable used later in the script to rewrite the default output excel file's name to one that is more descriptive.
-            bool rewriteOutputExcelFileName = true;
-
-            // OVERRIDE DEFAULT VALUE: input string 2
-            // The output excel workbook file path. (This file will contain the results of unit testing).
-            // Note: If file does not exist, create it. If it exists, add a new worksheet to the existing workbook.
-            if (args.Length > 1 && args[1] != "")
-            {
-                inputArg_outputExcelFilePath = args[1];
-                rewriteOutputExcelFileName = false;
-            }
-
-            // Handle any potential issues with console application input scenarios.
-            // Scenario 1: Incorrect # of inputs.
-            // Scenario 2: Input excel file does not exist.
-            if (args.Length < 1 || args.Length > 2)     // Scenario 1
-            {
-                ConsoleMessage("INCORRECT NUMBER OF INPUTS", "ERROR");
-                Console.Write(@"Correct Command Example: .\LogixUnitTesting inputExcelWorkbook_FilePath outputExcelWorkbook_FilePath");
-                issueWithScriptInputParsing = true;
-            }
-            if (!File.Exists(inputArg_inputExcelFilePath))  // Scenario 2
-            {
-                ConsoleMessage("Input excel workbook directory does not exist.", "ERROR");
-                issueWithScriptInputParsing = true;
-            }
-
-            // Create the folder that will contain the generated ACD files and/or L5X files. Note that the folder is deleted, if empty, at the end of the test.
-            string generatedFilesFolderPath = Directory.GetParent(Path.GetDirectoryName(inputArg_outputExcelFilePath)!) + @"\X_GeneratedFilesUsedDuringTesting\";
-            if (!Directory.Exists(generatedFilesFolderPath))
-                Directory.CreateDirectory(generatedFilesFolderPath);
-
-            // Print unit test banner to the console.
-            Console.WriteLine("\n  ".PadRight(consoleCharLengthLimit - 2, '='));
-            Console.WriteLine("".PadRight(consoleCharLengthLimit, '='));
-            string bannerContents = "UNIT TESTING | " + DateTime.Now + " " + TimeZoneInfo.Local;
-            int padding = (consoleCharLengthLimit - bannerContents.Length) / 2;
-            Console.WriteLine(bannerContents.PadLeft(bannerContents.Length + padding).PadRight(consoleCharLengthLimit));
-            Console.WriteLine("".PadRight(consoleCharLengthLimit, '='));
-            Console.WriteLine("  ".PadRight(consoleCharLengthLimit - 2, '=') + "\n");
-
-            // Print the input argument test parameters to the console.
-            ConsoleMessage("START parsing input arguments for unit testing...", "NEWSECTION", false);
-            ConsoleMessage($"Input excel sheet file path to be used: '{inputArg_inputExcelFilePath}'", "STATUS");
-            if (args.Length == 1)
-                ConsoleMessage($"Output excel sheet file path created (no file specified in input arguments): '{inputArg_outputExcelFilePath}'", "STATUS");
-            else
-                ConsoleMessage($"Output excel sheet file path to be used: '{inputArg_outputExcelFilePath}'", "STATUS");
-
-            ConsoleMessage("START parsing input excel workbook test information, parameters, and test cases...", "NEWSECTION");
+            // This folder will contain the generated ACD files and/or L5X files required for AOI unit testing.
+            string generatedFilesFolderPath = githubPath + @"3-cicd-config\ci-teststage\X_GeneratedFiles\";
 
             // Variables containing information about the AOI file to test & about whether to retain generated ACD or L5X files.
             string iExcel_testObjectType;
@@ -160,34 +99,14 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             bool iExcel_keepL5Xs;
 
             // Populate the above variables from the input excel file.
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_inputExcelFilePath)))
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(inputExcelFilePath)))
             {
                 ExcelWorksheet inputExcelWorksheet = package.Workbook.Worksheets.FirstOrDefault()!;
                 iExcel_testObjectType = inputExcelWorksheet.Cells[9, 2].Value.ToString()!.Trim()!.ToUpper()!;
-                iExcel_testObjectFilePath = inputExcelWorksheet.Cells[9, 4].Value.ToString()!.Trim()!;
-                iExcel_keepACDs = bool.Parse(inputExcelWorksheet.Cells[9, 25].Value?.ToString()!.Trim()!);
-                iExcel_keepL5Xs = bool.Parse(inputExcelWorksheet.Cells[9, 30].Value?.ToString()!.Trim()!);
+                iExcel_testObjectFilePath = githubPath + inputExcelWorksheet.Cells[9, 3].Value.ToString()!.Trim()!;
+                iExcel_keepACDs = bool.Parse(inputExcelWorksheet.Cells[9, 16].Value?.ToString()!.Trim()!);
+                iExcel_keepL5Xs = bool.Parse(inputExcelWorksheet.Cells[9, 21].Value?.ToString()!.Trim()!);
             }
-
-            // Print message to console about the selected input excel test information.
-            ConsoleMessage("Unit test target object type is AOI definition L5X.", "STATUS");
-            ConsoleMessage($"File to be tested: '{iExcel_testObjectFilePath}'.", "STATUS", false);
-            if (iExcel_testObjectType != "APPLICATION.ACD")
-            {
-                if (iExcel_keepACDs)
-                    ConsoleMessage($"Retain generated ACD files used to host unit tests.", "STATUS", false);
-                else
-                    ConsoleMessage($"Delete ACD files used to host unit tests.", "STATUS", false);
-
-                if (iExcel_keepL5Xs)
-                    ConsoleMessage($"Retain generated L5X files used to set up unit test.", "STATUS", false);
-                else
-                    ConsoleMessage($"Delete generated L5X files used to set up unit test.", "STATUS", false);
-            }
-
-            // End the main method script if an issue was encountered during input variable parsing.
-            if (issueWithScriptInputParsing)
-                return;
             #endregion
 
             #region STAGING TEST: create ACD file if needed -> create emulated controller & chassis -> import L5Xs if needed -> download to ACD -> put controller in run mode
@@ -198,11 +117,25 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             string testObjectName = "";
             LogixProject logixProject;
 
-            ConsoleMessage("START creating & opening ACD application file to be used during testing...", "NEWSECTION");
-
             // Get variables needed to set up unit test. Information retreived from the L5X or ACD file specified in the input excel sheet.
             testObjectName = GetAttributeValue(iExcel_testObjectFilePath, "AddOnInstructionDefinition", "Name", false)!;
             string softwareRevision = GetAttributeValue(iExcel_testObjectFilePath, "RSLogix5000Content", "SoftwareRevision", false)!;
+
+            // Print message to console about the selected input excel test information.
+            string outputExcelFilePath = githubPath + @"4-test-reports\excelreports\" + currentDateTime + "_" + testObjectName + "_UnitTestReport.xlsx";
+            string outputTextFileName = currentDateTime + "_" + testObjectName + "_UnitTestReport";
+            string outputTextFilePath = githubPath + @"4-test-reports\textreports\" + outputTextFileName + ".txt";
+
+            Console.WriteLine("Input excel workbook file path:".PadRight(40, ' ') + WrapText(inputExcelFilePath, 40, consoleCharLengthLimit));
+            Console.WriteLine("Output excel report file path:".PadRight(40, ' ') + WrapText(outputExcelFilePath, 40, consoleCharLengthLimit));
+            Console.WriteLine("Output text report path:".PadRight(40, ' ') + WrapText(outputTextFilePath, 40, consoleCharLengthLimit));
+            Console.WriteLine("Unit test target object type:".PadRight(40, ' ') + "AOI Definition (L5X)");
+            Console.WriteLine("File to be tested:".PadRight(40, ' ') + WrapText(iExcel_testObjectFilePath, 40, consoleCharLengthLimit));
+            Console.WriteLine("Retain generated ACD files:".PadRight(40, ' ') + iExcel_keepACDs);
+            Console.WriteLine("Retain generated L5X files:".PadRight(40, ' ') + iExcel_keepL5Xs);
+
+            CreateBanner("STAGING UNIT TEST");
+            ConsoleMessage("START creating & opening ACD application file to be used during testing...", "NEWSECTION", false);
 
             /* Create the ACD file to host unit test.
                 * (Note that these steps are necessary in order to include a program within 'Controller Fault Handler' in Studio 5k.)
@@ -214,7 +147,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             string l5xFileContents = L5XFiles.GetFaultHandlingApplicationL5XContents_ForRoutine(routineName_Cont, routineName_Event, programName_Cont,
                 programName_Event, taskName_Cont, taskName_Event, routineName_FaultHandler, programName_FaultHandler,
                 controllerName, processorType, softwareRevision);                                              // Step 1: Get L5X contents.
-            partialL5XprojectFilePath = generatedFilesFolderPath + currentDateTime + "_" + testObjectName + "_Basic.L5X";
+            partialL5XprojectFilePath = generatedFilesFolderPath + currentDateTime + "_" + testObjectName + "_NoAOI.L5X";
             File.WriteAllText(partialL5XprojectFilePath, l5xFileContents);                                     // Step 2: Generate new L5X file.
             LogixProject logixProjectL5X = await OpenLogixProjectAsync(partialL5XprojectFilePath);             // Step 3: Open L5X file.
             ConsoleMessage($"L5X application file created & opened at '{partialL5XprojectFilePath}'.", "STATUS");
@@ -279,7 +212,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             #endregion
 
             #region COMMENCE TEST: Set & check parameters for each test case from the excel sheet. Results are committed to output excel worksheet.
-            ConsoleMessage($"START {testObjectName} unit testing...", "NEWSECTION");
+            CreateBanner($"START {testObjectName} UNIT TEST");
 
             // Get the Name, DataType, Usage, Required, and Visible components of each parameter from the AOI definition XML file
             // & put those contents into an array.
@@ -293,8 +226,8 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             S5kAtomicTag AT_FaultCode;         // AT_FaultCode tag storing the controller fault code information.
             bool faultedState = false;         // An indicator of whether the controller is faulted or not.
             bool breakOutputParameterLoop;     // Used to break the "OUTPUT PARAMETER LOOP" if controller faulted when setting inputs. 
-            int testCases = GetPopulatedCellsInRowCount(inputArg_inputExcelFilePath, 18) - 2; // The number of test cases provided in the excel input workbook.
-            int failureCondition = 0;          // This variable tracking the number of failed test cases or controller faults.
+            int testCases = GetPopulatedCellsInRowCount(inputExcelFilePath, 18) - 2; // The number of test cases provided in the excel input workbook.
+            int failureCondition = 0;          // This variable tracks the number of failed test cases or controller faults.
             string previousTestEnableIn = "0"; /* Track the previous value of the EnableIn parameter.
                                                   Used in logic determining whether or not the tag AT_EnableIn needs to be updated. */
 
@@ -305,7 +238,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             {
 
 
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_outputExcelFilePath)))
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(outputExcelFilePath)))
                 {
                     // Store all test information in a worksheet with a uniquely time-stamped name.
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.Add($"{currentDateTime}_{testObjectName}");
@@ -410,7 +343,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             #endregion
 
             // Get the values of the "Safe State" test case #0 for each AOI parameter.
-            Dictionary<string, string> safeStateTestCase = GetExcelTestCaseValues(inputArg_inputExcelFilePath, 14);
+            Dictionary<string, string> safeStateTestCase = GetExcelTestCaseValues(inputExcelFilePath, 5);
 
             // Set values to known safe state
             await SetMultipleAOIParamVals_Async(aoiTagXPath, safeStateTestCase, AOIParameters, OperationMode.Online, logixProject);
@@ -423,7 +356,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             {
                 // Parameters updated/cleared each test case.
                 int testNumber = i + 1;                  // The test case currently being tested.
-                int inputExcelColumnNum = i + 15;        // The number of the input excel column from which test case values are being obtained.
+                int inputExcelColumnNum = i + 6;        // The number of the input excel column from which test case values are being obtained.
                 int faultType = 0;                       // Integer variable storing the controller fault type number (used in output excel).
                 int faultCode = 0;                       // Integer variable storing the controller fault code number (used in output excel).
                 breakOutputParameterLoop = false;        // Used to break the "OUTPUT PARAMETER LOOP" if controller faulted when setting inputs.
@@ -449,7 +382,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
                 ConsoleMessage($"Parameters set to \"Safe State\" test case #0.", "STATUS");
 
                 // Get the current test case values to be used during testing.
-                Dictionary<string, string> currentTestCaseValues = GetExcelTestCaseValues(inputArg_inputExcelFilePath, inputExcelColumnNum);
+                Dictionary<string, string> currentTestCaseValues = GetExcelTestCaseValues(inputExcelFilePath, inputExcelColumnNum);
 
                 // The EnableIn parameter is modified by changing the boolean tag AT_EnableIn (within an XIC instruction before the AOI instruction).
                 if (safeStateTestCase["EnableIn"] == "0" && currentTestCaseValues["EnableIn"] == "1")
@@ -464,7 +397,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
                 await SetMultipleAOIParamVals_Async(aoiTagXPath, currentTestCaseValues, AOIParameters, OperationMode.Online, logixProject, true);
 
                 // Get the number of clock cycles to test for this suite of test values.
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_inputExcelFilePath)))
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(inputExcelFilePath)))
                 {
                     ExcelWorksheet inputExcelWorksheet = package.Workbook.Worksheets.FirstOrDefault()!;
                     numberOfClockCycles = Convert.ToInt32(inputExcelWorksheet.Cells[18, inputExcelColumnNum].Value.ToString()!.Trim()!.ToUpper()!);
@@ -536,7 +469,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
                 AOIParameter[] AOIParameters_WithOutputs = GetAOIParameterValues(AOIParameters, aoiByteString);
 
                 #region OUTPUT EXCEL REPORT (location 2/4 where workbook is updated): test case parameter values from input excel added to output excel
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_outputExcelFilePath)))
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(outputExcelFilePath)))
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.LastOrDefault()!;
 
@@ -656,7 +589,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
                 }
 
                 #region OUTPUT EXCEL REPORT (location 3/4 where workbook is updated): actual output parameter values added to output excel
-                using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_outputExcelFilePath)))
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(outputExcelFilePath)))
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.LastOrDefault()!;
 
@@ -681,7 +614,13 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             }
 
             // Based on the AOI unit test result, print a final result message in red or green.
-            if (failureCondition > 0)
+            if (failureCondition == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                ConsoleMessage($"{testObjectName} Unit Test Final Result: FAIL | {failureCondition} Issue Encountered", "NEWSECTION", false);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else if (failureCondition > 1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 ConsoleMessage($"{testObjectName} Unit Test Final Result: FAIL | {failureCondition} Issues Encountered", "NEWSECTION", false);
@@ -703,7 +642,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             {
                 File.Delete(partialL5XprojectFilePath);
                 File.Delete(newAOIroutineL5XFilePath);
-                File.Delete(fullL5XprojectFilePath); // DELETE LATER: this needs to only be deleted based on the test object --------------------------------------------------------------------------------------------
+                File.Delete(fullL5XprojectFilePath);
                 ConsoleMessage($"Deleted '{partialL5XprojectFilePath}'.", "STATUS");
                 ConsoleMessage($"Deleted '{newAOIroutineL5XFilePath}'.", "STATUS");
                 ConsoleMessage($"Deleted '{fullL5XprojectFilePath}'.", "STATUS");
@@ -725,9 +664,6 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             {
                 ConsoleMessage($"Retained '{acdFilePath}'.", "STATUS");
             }
-
-            // Delete all backup files (ACDs are so frequently generated that there is little value in retaining backups).
-            File.Delete(acdFilePath + ".BAK");
 
             // Delete the generated files folder if it is empty.
             if (!Directory.EnumerateFileSystemEntries(generatedFilesFolderPath).Any())
@@ -760,7 +696,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             ConsoleMessage($"AOI Unit testing for '{testObjectName}' completed in {formattedTestLength} (HH:mm:ss).", "NEWSECTION");
 
             #region OUTPUT EXCEL REPORT (location 4/4 where workbook is updated): test length and overall test result added
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(inputArg_outputExcelFilePath)))
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(outputExcelFilePath)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.LastOrDefault()!;
 
@@ -782,11 +718,17 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             }
             #endregion
 
-            // Rename the output excel workbook based on test result.
-            if (rewriteOutputExcelFileName && (failureCondition > 0))
-                RenameFile(inputArg_outputExcelFilePath, currentDateTime + "_" + testObjectName + "_FAIL_AOIUnitTestReport.xlsx");
-            else if (rewriteOutputExcelFileName && (failureCondition == 0))
-                RenameFile(inputArg_outputExcelFilePath, currentDateTime + "_" + testObjectName + "_PASS_AOIUnitTestReport.xlsx");
+            // Print out final banner..
+            CreateBanner("ENDING UNIT TEST");
+
+            // Stop logging the console output to the text file.
+            StopLogging();
+
+            // Rename text file to include the target object name.
+            string textFileReportPath = githubPath + @"4-test-reports\textreports\" + currentDateTime + "_unittestfile.txt";   // The text report file path (renamed here).
+            RenameFile(textFileReportPath, outputTextFileName);
+
+            return failureCondition;
             #endregion
         }
 
@@ -2309,8 +2251,11 @@ This a programmatically created rung with a populated instance of the AOI instru
             // Get the directory of the old file
             string directory = Path.GetDirectoryName(oldFilePath)!;
 
+            // Get the extension of the old file.
+            string extension = Path.GetExtension(oldFilePath);
+
             // Combine the directory, new file name, and extension to form the new file path
-            string newFilePath = Path.Combine(directory, newFileName);
+            string newFilePath = Path.Combine(directory, newFileName + extension);
 
             // Rename the file
             File.Move(oldFilePath, newFilePath);
