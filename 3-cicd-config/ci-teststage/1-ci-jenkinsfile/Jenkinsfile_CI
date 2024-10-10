@@ -114,6 +114,8 @@ pipeline {
                         echo "second test result: ${env.TEST_RESULT}"
                     }
                 }
+
+                env.TEST_RESULT = testFinalResult
             }
         }
         stage('Release') {
@@ -201,14 +203,14 @@ def trimFinalTextReportBanner(folderPath) {
     if (fileList.size() > 0) {
         def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
 
-        // Read all lines from the file
-        def lines = readFile(mostRecentFilePath).trim()
+        // Get file contents
+        def fileContents = readFile(mostRecentFilePath).trim()
 
-        // Get the last 11 characters of the string
-        def lastEleven = lines[-9..-1]
-        echo lastEleven
+        // Get the last 9 characters of the string
+        def lastNineChars = fileContents[-9..-1]
+        echo lastNineChars
         // Remove the ']', '=', and '-' characters
-        def result = lastEleven.replaceAll("[\\]=-]", "")
+        def result = lastNineChars.replaceAll("[\\]=-]", "")
         echo result
         return result
     } else {
