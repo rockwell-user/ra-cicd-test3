@@ -8,7 +8,7 @@ pipeline {
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
         GITHUB_REPO_NAME = 'ra-cicd-test3'
-        GITHUB_DEV_BRANCH = 'dev-branch'
+        GITHUB_DEV_BRANCH = 'feature/engr-1'
         GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
@@ -100,16 +100,18 @@ pipeline {
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
 
+                    bat(
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
+                    )
+
                     def testResult = bat(
-                        script: "${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
                         returnStdout: true
                     ).trim()
-                    
-                    echo "${testResult}"
 
                     TEST_RESULT = testResult[-7..-1]
 
-                    if ((testResult == 'SUCCESS') || (testResult == 'FAILURE')) {
+                    if ((TEST_RESULT == 'SUCCESS') || (TEST_RESULT == 'FAILURE')) {
                         displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     }
                 }
@@ -132,10 +134,9 @@ pipeline {
                             git config --global core.autocrlf false
                             git config --global user.email ${env.GITHUB_USER_EMAIL}
                             git config --global user.name ${env.GITHUB_USER_NAME}
-                            git checkout --quiet ${env.GITHUB_DEV_BRANCH}
-                            git add -A
+                            git add .
                             git commit -m "${commit_message}"
-                            git push origin ${env.GITHUB_DEV_BRANCH}
+                            git push origin ${env.GITHUB_RELEASE_BRANCH}
 
                         """
                         // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
