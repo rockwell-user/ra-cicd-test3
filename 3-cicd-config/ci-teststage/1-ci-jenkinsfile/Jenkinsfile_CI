@@ -195,7 +195,7 @@ def trimFinalTextReportBanner(folderPath) {
         def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
         
         // Read all lines from the file
-        def lines = readFile(filePath).readLines()
+        def lines = readFile(mostRecentFilePath).readLines()
 
         // Get the final line
         def finalLine = lines[-1]
@@ -205,8 +205,11 @@ def trimFinalTextReportBanner(folderPath) {
 
         // Remove the ']', '=', and '-' characters
         def result = lastEleven.replaceAll("[\\]=-]", "")
+
         return result
     } else {
         echo "No text files found in the folder: ${folderPath}"
+
+        return null
     }
 }
