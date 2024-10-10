@@ -87,10 +87,8 @@ pipeline {
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
-                    environment {
-                        TEST_RESULT = testFinalResult
-                        echo "second test result: ${env.TEST_RESULT}"
-                    }
+                    // Assigning the value directly to env.TEST_RESULT
+                    env.TEST_RESULT = testFinalResult
                 }
             }
         }
@@ -184,14 +182,13 @@ def trimFinalTextReportBanner(folderPath) {
 
         // Get the last 9 characters of the string
         def lastNineChars = fileContents[-9..-1]
-        echo lastNineChars
+        
         // Remove the ']', '=', and '-' characters
         def result = lastNineChars.replaceAll("[\\]=-]", "")
-        echo result
+        
         return result
     } else {
         echo "No text files found in the folder: ${folderPath}"
-
         return "ERROR: no file found."
     }
 }
