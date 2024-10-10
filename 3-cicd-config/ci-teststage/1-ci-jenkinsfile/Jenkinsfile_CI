@@ -110,10 +110,7 @@ pipeline {
                     Get-Content ${tempErrorFile} | ForEach-Object { Write-Host \$_ }
                     """
 
-                    powershell(
-                        script: psScript,
-                        returnStatus: true
-                    )
+                    powershell(script: psScript)
 
                     // Read the captured output from the temporary files
                     def testResult = readFile(tempOutputFile).trim()
