@@ -134,9 +134,10 @@ pipeline {
                             git config --global core.autocrlf false
                             git config --global user.email ${env.GITHUB_USER_EMAIL}
                             git config --global user.name ${env.GITHUB_USER_NAME}
+                            git checkout -b ${env.GITHUB_DEV_BRANCH}
                             git add .
                             git commit -m "${commit_message}"
-                            git push origin ${env.GITHUB_RELEASE_BRANCH}
+                            git push origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
 
                         """
                         // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
