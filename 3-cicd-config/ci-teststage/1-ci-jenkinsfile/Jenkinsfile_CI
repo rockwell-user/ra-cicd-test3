@@ -174,7 +174,7 @@ def displayContentsOfMostRecentTextFile(folderPath) {
 def trimFinalTextReportBanner(folderPath) {
     def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
     if (fileList.size() > 0) {
-        def mostRecentFilePath = "${folderPath}\\${fileList[0]}"
+        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
 
         // Get file contents
         def fileContents = readFile(mostRecentFilePath).trim()
