@@ -42,8 +42,7 @@
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\ConsoleFormat.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T22:45:47.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T22:45:47.8Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\FileManagement.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAqwEwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T22:33:40.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T22:33:40.22Z"
             },
             {
               "$type": "Document",
@@ -67,8 +65,7 @@
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-09T20:56:16.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T20:56:16.849Z"
             },
             {
               "$type": "Document",
@@ -78,7 +75,7 @@
               "RelativeDocumentMoniker": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T20:03:40.162Z",
               "EditorCaption": ""
@@ -93,8 +90,7 @@
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "ViewState": "AgIAAL4AAAAAAAAAAAApwOUAAAB8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T20:10:44.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T20:10:44.569Z"
             }
           ]
         },
