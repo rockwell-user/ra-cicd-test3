@@ -90,7 +90,7 @@ pipeline {
                 script {
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
                     echo env.TEST_RESULT
 
@@ -111,7 +111,7 @@ pipeline {
                     )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
                     echo env.TEST_RESULT
                 }
@@ -121,7 +121,7 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
-                    if (TEST_RESULT == 'PASS') {
+                    if (env.TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
@@ -218,6 +218,6 @@ def trimFinalTextReportBanner(folderPath) {
     } else {
         echo "No text files found in the folder: ${folderPath}"
 
-        return null
+        return "ERROR: no file found."
     }
 }
