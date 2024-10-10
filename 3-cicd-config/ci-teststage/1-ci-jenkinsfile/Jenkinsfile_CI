@@ -3,13 +3,13 @@ pipeline {
     
     environment {
         PATH_JENKINS_GITHUB = "C:\\data\\jenkins_home\\workspace\\${env.JOB_NAME}\\"
-        ACDFILENAME = 'CICD_test.ACD'
+        INPUTEXCELFILENAME = 'AOIUnitTestInput_WetBulbTemperature.xlsx'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
         GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
-        GITHUB_REPO_NAME = 'ra-cicd-test-old'
+        GITHUB_REPO_NAME = 'ra-cicd-test3'
         GITHUB_DEV_BRANCH = 'dev-branch'
-        GITHUB_RELEASE_BRANCH = 'release-branch'
+        GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
         TEST_RESULT = ''
@@ -76,7 +76,7 @@ pipeline {
                     bat """
                         del C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config
                         git config --global http.sslbackend schannel
-                        cd %PATH_JENKINS_GITHUB%cicd-config\\TestStage_CICD
+                        cd %PATH_JENKINS_GITHUB%3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool
                         dotnet build --configuration Release
                     """
                 }
@@ -98,10 +98,10 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
-                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}cicd-config\\TestStage_CICD\\TestScript_ConsoleApplication\\bin\\Release\\net8.0\\TestScript_ConsoleApplication.exe"
+                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\AOIUnitTesting_ConsoleApp.exe"
                     
                     testResult = bat(
-                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.ACDFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
                         returnStdout: true
                     ).trim()
 
