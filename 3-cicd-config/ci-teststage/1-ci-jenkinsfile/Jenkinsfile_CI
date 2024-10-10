@@ -57,6 +57,9 @@ pipeline {
                         cd %PATH_JENKINS_GITHUB%3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool
                         dotnet build --configuration Release
                     """
+                    echo "env.TEST_RESULT build1: ${env.TEST_RESULT}"
+                    env.TEST_RESULT = 'test2'
+                    echo "env.TEST_RESULT build2: ${env.TEST_RESULT}"
                 }
             }
         }
