@@ -98,6 +98,7 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
+                    echo env.TEST_RESULT
                     if (env.TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
