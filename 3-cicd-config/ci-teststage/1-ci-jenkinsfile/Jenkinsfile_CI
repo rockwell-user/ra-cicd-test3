@@ -86,7 +86,7 @@ pipeline {
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     
                     // Assigning the value directly to env.TEST_RESULT
-                    env.TEST_RESULT = "PASS"
+                    env.TEST_RESULT = 'PASS'
 
                     def result = (env.TEST_RESULT == testFinalResult)
                     echo "bool expression: ${result}"
