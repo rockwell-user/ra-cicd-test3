@@ -88,6 +88,12 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
+
+                    // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
+                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+
+                    echo env.TEST_RESULT
+                    
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
                         returnStdout: true
@@ -105,7 +111,9 @@ pipeline {
                     )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")                    
+                    TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+
+                    echo env.TEST_RESULT
                 }
             }
         }
@@ -180,7 +188,7 @@ def createBanner(bannerName) {
 def displayContentsOfMostRecentTextFile(folderPath) {
     def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
     if (fileList.size() > 0) {
-        def mostRecentFile = fileList[1]
+        def mostRecentFile = fileList[0]
         echo "The contents of the most recent test file (${mostRecentFile}):"
         def fileContents = readFile("${folderPath}\\${mostRecentFile}")
         echo "${fileContents}"
@@ -192,7 +200,7 @@ def displayContentsOfMostRecentTextFile(folderPath) {
 def trimFinalTextReportBanner(folderPath) {
     def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
     if (fileList.size() > 0) {
-        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
+        def mostRecentFilePath = "${folderPath}\\${fileList[0]}"
         
         // Read all lines from the file
         def lines = readFile(mostRecentFilePath).readLines()
