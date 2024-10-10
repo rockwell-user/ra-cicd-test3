@@ -90,6 +90,10 @@ pipeline {
 
                     echo "env.TEST_RESULT expression: ${env.TEST_RESULT}"
                     echo "testFinalResult expression: ${testFinalResult}"
+
+                    env.TEST_RESULT = testFinalResult
+                    echo "env.TEST_RESULT expression: ${env.TEST_RESULT}"
+                    echo "testFinalResult expression: ${testFinalResult}"
                 }
             }
         }
@@ -145,7 +149,7 @@ pipeline {
 def createBanner(bannerName) {
     script {
         def finalBanner = '-=[' + bannerName + ']=-'
-        echo finalBanner.padRight(180, '-')
+        echo finalBanner.padRight(160, '-')
     }
 }
 
