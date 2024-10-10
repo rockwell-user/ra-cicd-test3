@@ -105,9 +105,13 @@ pipeline {
                     )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    env.TEST_RESULT = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
 
-                    echo "test result: ${env.TEST_RESULT}"
+                    echo "first test result: ${testFinalResult}"
+
+                    env.TEST_RESULT = testFinalResult
+
+                    echo "second test result: ${env.TEST_RESULT}"
                 }
             }
         }
@@ -154,7 +158,7 @@ pipeline {
         stage ('Clean Workspace') {
             steps {
                 createBanner('STAGE: Clean Workspace')
-                cleanWs()
+                //cleanWs()
             }
         }
     }
