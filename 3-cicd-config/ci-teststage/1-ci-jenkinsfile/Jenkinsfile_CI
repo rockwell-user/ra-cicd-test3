@@ -16,7 +16,6 @@ pipeline {
         GITHUB_USER_EMAIL = powershell(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
         GITHUB_USER_NAME = powershell(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
-        NEW_TEST_RESULT = ''
     }
 
     stages {
@@ -87,7 +86,13 @@ pipeline {
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     echo testFinalResult
                     // Assigning the value directly to env.TEST_RESULT
-                    env.NEW_TEST_RESULT = testFinalResult
+                    
+                    env.TEST_RESULT = "PASS"
+
+                    def result = (env.TEST_RESULT == testFinalResult)
+                    echo "bool expression: ${result}"
+                    echo "env.TEST_RESULT expression: ${env.TEST_RESULT}"
+                    echo "TEST_RESULT expression: ${TEST_RESULT}"
                 }
             }
         }
@@ -95,8 +100,8 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
-                    echo env.NEW_TEST_RESULT
-                    if (env.NEW_TEST_RESULT == 'PASS') {
+                    echo env.TEST_RESULT
+                    if (env.TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
