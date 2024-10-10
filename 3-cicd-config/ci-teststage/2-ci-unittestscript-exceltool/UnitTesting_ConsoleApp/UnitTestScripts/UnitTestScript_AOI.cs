@@ -19,6 +19,7 @@ using System.Drawing;
 using System.Text;
 using System.Xml.Linq;
 using static ConsoleFormatter_ClassLibrary.ConsoleFormatter;
+using static ConsoleFormatter_ClassLibrary.FileManagement;
 using static LogixDesigner_ClassLibrary.LogixDesigner;
 using static RockwellAutomation.LogixDesigner.LogixProject;
 using static UnitTesting_ConsoleApp.StartUnitTest;
@@ -79,7 +80,7 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
         /// Inputs from UnitTestProgram.
         /// </param>
         /// <returns></returns>
-        public static async Task<int?> RunTest(string[] args)
+        public static async Task RunTest(string[] args)
         {
             #region PARSE VARIABLES & INITIALIZE UNIT TEST
             CreateBanner("UNIT TEST INFO");
@@ -720,11 +721,34 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
             // Print out final banner..
             CreateBanner("ENDING UNIT TEST");
 
+            // Retain the specified number of generated unit test reports and generated files used to execute unit testing.
+            ConsoleMessage("START file management...", "NEWSECTION", false);
+            string textReportsFolderPath = githubPath + @"4-test-reports\textreports";
+            ConsoleMessage($"Set to retain '{numberOfTextReportsToRetain}' text reports at '{textReportsFolderPath}'", "STATUS");
+            RetainMostRecentFiles(textReportsFolderPath, numberOfTextReportsToRetain, ".txt");
+            string excelReportsFolderPath = githubPath + @"4-test-reports\excelreports";
+            ConsoleMessage($"Set to retain '{numberOfExcelReportsToRetain}' excel reports at '{excelReportsFolderPath}'", "STATUS");
+            RetainMostRecentFiles(excelReportsFolderPath, numberOfExcelReportsToRetain, ".xlsx");
+            string temporaryFilesFolderPath = githubPath + @"3-cicd-config\ci-teststage\X_GeneratedFiles";
+            ConsoleMessage($"Set to retain '{numberOfGeneratedL5XFilesToRetain}' L5X files at '{temporaryFilesFolderPath}'", "STATUS");
+            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedL5XFilesToRetain, ".L5X");
+            ConsoleMessage($"Set to retain '{numberOfGeneratedACDFilesToRetain}' ACD files at '{temporaryFilesFolderPath}'", "STATUS");
+            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedACDFilesToRetain, ".ACD");
+            ConsoleMessage($"Set to retain '{numberOfGeneratedBAKFilesToRetain}' BAK files at '{temporaryFilesFolderPath}'", "STATUS");
+            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedBAKFilesToRetain, ".BAK");
+
+            // Print out final banner based on test results.
+            if (failureCondition > 0)
+                CreateBanner("UNIT TEST FINAL RESULT: FAIL");
+            else
+                CreateBanner("UNIT TEST FINAL RESULT: PASS");
+
+            // Stop logging the console output to the text file.
+            StopLogging();
+
             // Rename text file to include the target object name.
             string textFileReportPath = githubPath + @"4-test-reports\textreports\" + currentDateTime + "_unittestfile.txt";   // The text report file path (renamed here).
             RenameFile(textFileReportPath, outputTextFileName);
-
-            return failureCondition;
             #endregion
         }
 

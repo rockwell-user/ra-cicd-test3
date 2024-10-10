@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|c:\\users\\asyost\\desktop\\ra_cicd\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\unittesting_consoleapp\\unittestprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|solutionrelative:unittesting_consoleapp\\unittestprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|c:\\users\\asyost\\desktop\\ra_cicd\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\unittesting_consoleapp\\unittestscripts\\unittestscript_aoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|solutionrelative:unittesting_consoleapp\\unittestscripts\\unittestscript_aoi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|c:\\users\\asyost\\desktop\\ra_cicd\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\unittesting_consoleapp\\unittestprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0B92E4F-45C9-4E50-B0B0-6F8DFD572A99}|UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj|solutionrelative:unittesting_consoleapp\\unittestprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3A3D3A20-6BEC-48F3-8F6C-60DE9C48C36E}|ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj|c:\\users\\asyost\\desktop\\ra_cicd\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\consoleformatter_classlibrary\\filemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -42,8 +42,7 @@
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\ConsoleFormat.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T22:45:47.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T22:45:47.8Z"
             },
             {
               "$type": "Document",
@@ -53,7 +52,7 @@
               "RelativeDocumentMoniker": "ConsoleFormatter_ClassLibrary\\FileManagement.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\FileManagement.cs",
               "RelativeToolTip": "ConsoleFormatter_ClassLibrary\\FileManagement.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAA6wEwAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAARwBgAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T22:33:40.22Z",
               "EditorCaption": ""
@@ -67,31 +66,30 @@
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-09T20:56:16.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T20:56:16.849Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UnitTestProgram.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "RelativeDocumentMoniker": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestProgram.cs",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestProgram.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAOwLEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T20:03:40.162Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UnitTestScript_AOI.cs",
               "DocumentMoniker": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "RelativeDocumentMoniker": "UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "ToolTip": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
               "RelativeToolTip": "UnitTesting_ConsoleApp\\UnitTestScripts\\UnitTestScript_AOI.cs",
-              "ViewState": "AgIAAL4CAAAAAAAAAIApwNECAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAMUCAAAAAAAAAIAwwOQCAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T20:10:44.569Z",
               "EditorCaption": ""

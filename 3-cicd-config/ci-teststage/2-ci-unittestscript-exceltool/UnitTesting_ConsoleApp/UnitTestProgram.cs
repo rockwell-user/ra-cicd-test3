@@ -130,14 +130,11 @@ namespace UnitTesting_ConsoleApp
                 iExcel_testObjectType = inputExcelWorksheet.Cells[9, 2].Value.ToString()!.Trim()!.ToUpper()!;
             }
 
-            // This variable tracks the number of failed test cases or controller faults.
-            int? failureCondition = 0;
-
             // Run the test script for the specific input target object.
             if (iExcel_testObjectType == "APPLICATION.ACD")
                 ConsoleMessage("Full application unit test has yet to be developed.", "ERROR");
             else if (iExcel_testObjectType == "AOI_DEFINITION.L5X")
-                failureCondition += await UnitTestScript_AOI.RunTest(args);
+                await UnitTestScript_AOI.RunTest(args);
             else if (iExcel_testObjectType == "RUNG.L5X")
                 ConsoleMessage("Rung unit test has yet to be developed.", "ERROR");
             else if (iExcel_testObjectType == "ROUTINE.L5X")
@@ -149,31 +146,6 @@ namespace UnitTesting_ConsoleApp
                 ConsoleMessage($"Test object type '{iExcel_testObjectType}' not supported. Select either AOI_Definition.L5X, Rung.L5X, Program.L5X, or " +
                     $"Application.ACD.", "ERROR");
             }
-
-            // Retain the specified number of generated unit test reports and generated files used to execute unit testing.
-            ConsoleMessage("START file management...", "NEWSECTION", false);
-            string textReportsFolderPath = githubPath + @"4-test-reports\textreports";
-            ConsoleMessage($"Set to retain '{numberOfTextReportsToRetain}' text reports at '{textReportsFolderPath}'", "STATUS");
-            RetainMostRecentFiles(textReportsFolderPath, numberOfTextReportsToRetain, ".txt");
-            string excelReportsFolderPath = githubPath + @"4-test-reports\excelreports";
-            ConsoleMessage($"Set to retain '{numberOfExcelReportsToRetain}' excel reports at '{excelReportsFolderPath}'", "STATUS");
-            RetainMostRecentFiles(excelReportsFolderPath, numberOfExcelReportsToRetain, ".xlsx");
-            string temporaryFilesFolderPath = githubPath + @"3-cicd-config\ci-teststage\X_GeneratedFiles";
-            ConsoleMessage($"Set to retain '{numberOfGeneratedL5XFilesToRetain}' L5X files at '{temporaryFilesFolderPath}'", "STATUS");
-            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedL5XFilesToRetain, ".L5X");
-            ConsoleMessage($"Set to retain '{numberOfGeneratedACDFilesToRetain}' ACD files at '{temporaryFilesFolderPath}'", "STATUS");
-            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedACDFilesToRetain, ".ACD");
-            ConsoleMessage($"Set to retain '{numberOfGeneratedBAKFilesToRetain}' BAK files at '{temporaryFilesFolderPath}'", "STATUS");
-            RetainMostRecentFiles(temporaryFilesFolderPath, numberOfGeneratedBAKFilesToRetain, ".BAK");
-
-            // Print out final banner based on test results.
-            if (failureCondition > 0)
-                CreateBanner("UNIT TEST FINAL RESULT: FAIL");
-            else
-                CreateBanner("UNIT TEST FINAL RESULT: PASS");
-
-            // Stop logging the console output to the text file.
-            StopLogging();
         }
     }
 }

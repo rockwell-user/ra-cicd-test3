@@ -1,7 +1,7 @@
 
   =========================================================================================================
 ==============================================================================================================
-             CI UNIT TESTING STAGE | 10/9/2024 6:58:32 PM (UTC-05:00) Eastern Time (US & Canada)              
+            CI UNIT TESTING STAGE | 10/10/2024 12:21:51 PM (UTC-05:00) Eastern Time (US & Canada)             
 ==============================================================================================================
   ==========================================================================================================
 
@@ -21,44 +21,44 @@ Echo SDK .NET Framework version:        6.0
 Input excel workbook file path:         C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\3-ci-inpute
                                         xcelworkbooks-forunittestscripts\AOIUnitTestInput_WetBulbTemperature.x
                                         lsx
-Output excel report file path:          C:\Users\ASYost\Desktop\RA_CICD\4-test-reports\excelreports\2024100918
-                                        5832_WetBulbTemperature_UnitTestReport.xlsx
-Output text report path:                C:\Users\ASYost\Desktop\RA_CICD\4-test-reports\textreports\20241009185
-                                        832_WetBulbTemperature_UnitTestReport.txt
+Output excel report file path:          C:\Users\ASYost\Desktop\RA_CICD\4-test-reports\excelreports\2024101012
+                                        2151_WetBulbTemperature_UnitTestReport.xlsx
+Output text report path:                C:\Users\ASYost\Desktop\RA_CICD\4-test-reports\textreports\20241010122
+                                        151_WetBulbTemperature_UnitTestReport.txt
 Unit test target object type:           AOI Definition (L5X)
 File to be tested:                      C:\Users\ASYost\Desktop\RA_CICD\2-DEVELOPMENT-files\L5Xs\WetBulbTemper
                                         ature.L5X
 Retain generated ACD files:             True
 Retain generated L5X files:             False
 --------------------------------------------------------------------------------------=[STAGING UNIT TEST]=---
-[18:58:34] START creating & opening ACD application file to be used during testing...
+[12:21:53] START creating & opening ACD application file to be used during testing...
    STATUS: L5X application file created & opened at 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststag
-           e\X_GeneratedFiles\20241009185832_WetBulbTemperature_NoAOI.L5X'.
+           e\X_GeneratedFiles\20241010122151_WetBulbTemperature_NoAOI.L5X'.
    STATUS: ACD application file created & opened at 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststag
-           e\X_GeneratedFiles\20241009185832_WetBulbTemperature_WithAOI.ACD'.
+           e\X_GeneratedFiles\20241010122151_WetBulbTemperature_WithAOI.ACD'.
 ---
-[18:59:39] START setting up Factory Talk Logix Echo emulated controller...
-   STATUS: Project communication path specified is 'EmulateEthernet\172.31.11.49'.
+[12:22:54] START setting up Factory Talk Logix Echo emulated controller...
+   STATUS: Project communication path specified is 'EmulateEthernet\172.27.137.135'.
 ---
-[18:59:41] START preparing ACD application environment for unit test...
+[12:23:02] START preparing ACD application environment for unit test...
    STATUS: Imported 'C:\Users\ASYost\Desktop\RA_CICD\2-DEVELOPMENT-files\L5Xs\WetBulbTemperature.L5X' to 'C:\U
-           sers\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241009185832_WetBulbTempe
+           sers\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010122151_WetBulbTempe
            rature_WithAOI.ACD'.
    STATUS: Print STATUS messages for AOI.L5X to rung.L5X conversion? Currently set to 'False'. To change,
            change the value of the 'conversionPrintOut' static variable in the 'UnitTestScript_AOI.cs' file.
-   STATUS: Imported 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\2024100918583
-           2_WetBulbTemperature_AOIRoutine.L5X' to 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage
-           \X_GeneratedFiles\20241009185832_WetBulbTemperature_WithAOI.ACD'.
+   STATUS: Imported 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\2024101012215
+           1_WetBulbTemperature_AOIRoutine.L5X' to 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage
+           \X_GeneratedFiles\20241010122151_WetBulbTemperature_WithAOI.ACD'.
 ---
-[18:59:44] START changing controller to PROGRAM mode...
+[12:23:05] START changing controller to PROGRAM mode...
    STATUS: SUCCESS changing controller to PROGRAM mode.
 ---
-[18:59:45] START downloading ACD file...
+[12:23:06] START downloading ACD file...
    STATUS: SUCCESS downloading ACD file.
 ---
-[18:59:54] START changing controller to TEST mode...
+[12:23:17] START changing controller to TEST mode...
    STATUS: SUCCESS changing controller to TEST mode.
-------------------------------------------------------------------=[START WetBulbTemperature UNIT TESTING]=---
+---------------------------------------------------------------------=[START WetBulbTemperature UNIT TEST]=---
    STATUS: Done setting up & formatting output excel test report.
    STATUS: WetBulbTemperature parameter values set to "Safe State" test case #0, shown below:
  ┌── Name: EnableIn           | Data Type: BOOL | Usage: Input  |  Value: 0    
@@ -67,7 +67,7 @@ Retain generated L5X files:             False
  ├── Name: RelativeHumidity   | Data Type: REAL | Usage: Input  |  Value: 0    
  ├── Name: isFahrenheit       | Data Type: BOOL | Usage: Input  |  Value: 0    
  └── Name: WetBulbTemperature | Data Type: REAL | Usage: Output |  Value: 0    
-[19:00:03] START test case 1/1...
+[12:23:25] START test case 1/1...
    STATUS: Parameters set to "Safe State" test case #0.
    STATUS: Setting input parameter values for test case 1/1.
            ┌── EnableIn value:                                             0 -> 0
@@ -77,19 +77,19 @@ Retain generated L5X files:             False
    STATUS: Progressed controller by 1 clock cycle (1/1).
      PASS: EnableOut expected value '0' & actual value '0' EQUAL.
    STATUS: Updated output excel test report with test case 1/1.
-[19:00:18] WetBulbTemperature Unit Test Final Result: PASS
+[12:23:40] WetBulbTemperature Unit Test Final Result: PASS
 ---
-[19:00:18] START retaining or deleting programmatically generated test components...
-   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241009185832
+[12:23:40] START retaining or deleting programmatically generated test components...
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010122151
            _WetBulbTemperature_NoAOI.L5X'.
-   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241009185832
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010122151
            _WetBulbTemperature_AOIRoutine.L5X'.
-   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241009185832
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010122151
            _WetBulbTemperature_FullProj.L5X'.
-   STATUS: Retained 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\2024100918583
-           2_WetBulbTemperature_WithAOI.ACD'.
+   STATUS: Retained 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\2024101012215
+           1_WetBulbTemperature_WithAOI.ACD'.
    STATUS: Retained folder 'C:\Users\ASYost\Desktop\RA_CICD\3-cicd-config\ci-teststage\X_GeneratedFiles\'.
    STATUS: Deleted Logix Echo chassis named 'AOIUnitTest_Chassis' & controller named 'AOIUnitTest_Controller'.
 ---
-[19:00:18] AOI Unit testing for 'WetBulbTemperature' completed in 00:01:46 (HH:mm:ss).
---------------------------------------------------------------------------------------------=[ENDING TEST]=---
+[12:23:40] AOI Unit testing for 'WetBulbTemperature' completed in 00:01:49 (HH:mm:ss).
+---------------------------------------------------------------------------------------=[ENDING UNIT TEST]=---
