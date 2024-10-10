@@ -105,11 +105,11 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
-                    TEST_RESULT = testResult
+                    TEST_RESULT = testResult;
                     echo "Test result is: \n${testResult}"
 
                     if ((testResult == 'SUCCESS') || (testResult == 'FAILURE')) {
-                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}test-reports\\textFiles")
+                        displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
                     }
                 }
             }
