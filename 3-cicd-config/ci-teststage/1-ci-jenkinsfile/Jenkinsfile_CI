@@ -12,7 +12,7 @@ pipeline {
         GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
         DOTNET_VERSION = '8.0'
         DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
-        TEST_RESULT = ''
+        TEST_RESULT = 'test'
         GITHUB_USER_EMAIL = powershell(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
         GITHUB_USER_NAME = powershell(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
         UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
