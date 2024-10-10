@@ -99,20 +99,15 @@ pipeline {
                     ).trim()
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
-                    
-                    // Define a temporary file for capturing the output
-                    def tempOutputFile = 'output.log'
 
-                    bat(
-                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER} | tee ${tempOutputFile}", 
+                    def testResult = bat(
+                        script: "${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}", 
                         returnStdout: true
-                    )
+                    ).trim()
+                    
+                    echo "${testResult}"
 
-                    // Read the captured output from the temporary file
-                    def testResult = readFile(tempOutputFile).trim()
-
-                    TEST_RESULT = testResult;
-                    echo "Test result is: \n${testResult}"
+                    TEST_RESULT = testResult[-7..-1]
 
                     if ((testResult == 'SUCCESS') || (testResult == 'FAILURE')) {
                         displayContentsOfMostRecentTextFile("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
