@@ -168,9 +168,9 @@ namespace UnitTesting_ConsoleApp
 
             // Print out final banner based on test results.
             if (failureCondition > 0)
-                CreateBanner("UNIT TEST FINAL RESULT: PASS");
-            else
                 CreateBanner("UNIT TEST FINAL RESULT: FAIL");
+            else
+                CreateBanner("UNIT TEST FINAL RESULT: PASS");
         }
     }
 }

@@ -113,7 +113,7 @@ pipeline {
             steps {
                 createBanner('STAGE: Release')
                 script {
-                    if (TEST_RESULT == 'SUCCESS') {
+                    if (TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
                         def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
