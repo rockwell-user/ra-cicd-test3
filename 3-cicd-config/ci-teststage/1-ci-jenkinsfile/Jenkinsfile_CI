@@ -201,19 +201,23 @@ def trimFinalTextReportBanner(folderPath) {
     def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
     if (fileList.size() > 0) {
         def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
-        
+        echo mostRecentFile
+
         // Read all lines from the file
         def lines = readFile(mostRecentFilePath).readLines()
+        echo lines
 
         // Get the final line
         def finalLine = lines[-1]
+        echo finalLine
 
         // Get the last 11 characters of the string
         def lastEleven = finalLine[-11..-1]
+        echo lastEleven
 
         // Remove the ']', '=', and '-' characters
         def result = lastEleven.replaceAll("[\\]=-]", "")
-
+        echo result
         return result
     } else {
         echo "No text files found in the folder: ${folderPath}"
