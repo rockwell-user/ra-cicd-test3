@@ -75,9 +75,9 @@ namespace UnitTesting_ConsoleApp
             if (args.Length != 8)
             {
                 CreateBanner("INCORRECT NUMBER OF INPUTS");
-                Console.Write("Correct Command: ".PadRight(20, ' ') + WrapText(@".\UnitTesting_ConsoleApp.exe githubPath excelFilename name_mostRecentCommit " +
+                Console.WriteLine("Correct Command: ".PadRight(20, ' ') + WrapText(@".\UnitTesting_ConsoleApp.exe githubPath excelFilename name_mostRecentCommit " +
                                   "email_mostRecentCommit message_mostRecentCommit hash_mostRecentCommit jenkinsJobName jenkinsBuildNumber", 20, consoleCharLengthLimit));
-                Console.Write("Example Format: ".PadRight(20, ' ') + WrapText(@".\UnitTesting_ConsoleApp.exe C:\Users\TestUser\Desktop\example-github-repo\ " +
+                Console.WriteLine("Example Format: ".PadRight(20, ' ') + WrapText(@".\UnitTesting_ConsoleApp.exe C:\Users\TestUser\Desktop\example-github-repo\ " +
                                   "excel_filename.xlsx 'Allen Bradley' example@gmail.com 'Most recent commit message insert here' " +
                                   "287bb2c93a2d1c99143d233fd3ed70cdb997f149 Jenkins-CICD-Example 218", 20, consoleCharLengthLimit));
                 CreateBanner("END");
