@@ -1,0 +1,127 @@
+
+  =========================================================================================================
+==============================================================================================================
+            CI UNIT TESTING STAGE | 10/15/2024 10:31:40 AM (UTC-05:00) Eastern Time (US & Canada)             
+==============================================================================================================
+  ==========================================================================================================
+
+
+----------------------------------------------------------------------------------=[GITHUB & JENKINS INFO]=---
+Test initiated by:                      andre yost
+Tester contact information:             andre.yost@gmail.com
+Git commit hash to be verified:         428u098903825093
+Git commit message to be verified:      commit message!
+Jenkins job being executed:             RA-CI-Jenkinsjob
+Jenkins job build number:               345
+----------------------------------------------------------------------------------------------=[.NET INFO]=---
+Common Language Runtime version:        v4.0.30319
+LDSDK .NET Framework version:           8.0
+Echo SDK .NET Framework version:        6.0
+-----------------------------------------------------------------------------------------=[UNIT TEST INFO]=---
+Input excel workbook file path:         C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\3-ci-inpu
+                                        texcelworkbooks-forunittestscripts\AOIUnitTestInput_WetBulbTemperature
+                                        .xlsx
+Output excel report file path:          C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\excelreports\2024101510
+                                        3140_WetBulbTemperature_UnitTestReport.xlsx
+Output text report path:                C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\textreports\20241015103
+                                        140_WetBulbTemperature_UnitTestReport.txt
+Unit test target object type:           AOI Definition (L5X)
+File to be tested:                      C:\Users\ASYost\Desktop\RA_CICD\1-PRODUCTION-files\L5Xs\WetBulbTempera
+                                        ture.L5X
+Retain generated ACD files:             True
+Retain generated L5X files:             False
+--------------------------------------------------------------------------------------=[STAGING UNIT TEST]=---
+[10:31:42] START creating & opening ACD application file to be used during testing...
+   STATUS: L5X application file created & opened at 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-testst
+           age\x-generatedfiles\20241015103140_WetBulbTemperature_NoAOI.L5X'.
+   STATUS: ACD application file created & opened at 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-testst
+           age\x-generatedfiles\20241015103140_WetBulbTemperature_WithAOI.ACD'.
+---
+[10:32:45] START setting up Factory Talk Logix Echo emulated controller...
+   STATUS: Project communication path specified is 'EmulateEthernet\172.26.162.167'.
+---
+[10:32:47] START preparing ACD application environment for unit test...
+   STATUS: Imported 'C:\Users\ASYost\Desktop\RA_CICD\1-PRODUCTION-files\L5Xs\WetBulbTemperature.L5X' to 'C:\Us
+           ers\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\20241015103140_WetBulbTemp
+           erature_WithAOI.ACD'.
+   STATUS: Print STATUS messages for AOI.L5X to rung.L5X conversion? Currently set to 'False'. To change,
+           toggle the value of the 'conversionPrintOut' static boolean variable in the 'UnitTestScript_AOI.cs'
+           file.
+   STATUS: Imported 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\20241015103
+           140_WetBulbTemperature_AOIRoutine.L5X' to 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-tests
+           tage\x-generatedfiles\20241015103140_WetBulbTemperature_WithAOI.ACD'.
+---
+[10:32:50] START changing controller to PROGRAM mode...
+   STATUS: SUCCESS changing controller to PROGRAM mode.
+---
+[10:32:50] START downloading ACD file...
+   STATUS: SUCCESS downloading ACD file.
+---
+[10:33:01] START changing controller to TEST mode...
+   STATUS: SUCCESS changing controller to TEST mode.
+---------------------------------------------------------------------=[START WetBulbTemperature UNIT TEST]=---
+   STATUS: Done setting up & formatting output excel test report.
+   STATUS: WetBulbTemperature parameter values set to "Safe State" test case #0, shown below:
+ ┌── Name: EnableIn           | Data Type: BOOL | Usage: Input  |  Value: 0    
+ ├── Name: EnableOut          | Data Type: BOOL | Usage: Output |  Value: 0    
+ ├── Name: Temperature        | Data Type: REAL | Usage: Input  |  Value: 0    
+ ├── Name: RelativeHumidity   | Data Type: REAL | Usage: Input  |  Value: 0    
+ ├── Name: isFahrenheit       | Data Type: BOOL | Usage: Input  |  Value: 0    
+ └── Name: WetBulbTemperature | Data Type: REAL | Usage: Output |  Value: 0    
+[10:33:09] START test case 1/1...
+   STATUS: Parameters set to "Safe State" test case #0.
+   STATUS: Setting input parameter values for test case 1/1.
+           ┌── EnableIn value:                                             0 -> 0
+           ├── Temperature value:                                          0 -> 100
+           ├── RelativeHumidity value:                                     0 -> 50
+           └── isFahrenheit value:                                         0 -> 1
+   STATUS: Progressed controller by 1 clock cycle (1/1).
+     PASS: EnableOut expected value '0' & actual value '0' EQUAL.
+   STATUS: Updated output excel test report with test case 1/1.
+[10:33:22] WetBulbTemperature Unit Test Final Result: PASS
+---
+[10:33:22] START retaining or deleting programmatically generated test components...
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\202410151031
+           40_WetBulbTemperature_NoAOI.L5X'.
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\202410151031
+           40_WetBulbTemperature_AOIRoutine.L5X'.
+   STATUS: Deleted 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\202410151031
+           40_WetBulbTemperature_FullProj.L5X'.
+   STATUS: Retained 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\20241015103
+           140_WetBulbTemperature_WithAOI.ACD'.
+   STATUS: Retained folder 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-generatedfiles\'.
+   STATUS: Deleted Logix Echo chassis named 'AOIUnitTest_Chassis' & controller named 'AOIUnitTest_Controller'.
+---
+[10:33:23] AOI Unit testing for 'WetBulbTemperature' completed in 00:01:42 (HH:mm:ss).
+---------------------------------------------------------------------------------------=[ENDING UNIT TEST]=---
+[10:33:23] START file management...
+   STATUS: Set to retain '5' text reports at 'C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\textreports'
+           Retained '20241015103140_unittestfile.txt'
+           Retained '20241015102848_unittestfile.txt'
+           Retained '20241015102806_unittestfile.txt'
+           Retained '20241010122524_WetBulbTemperature_UnitTestReport.txt'
+           Retained '20241010122151_unittestfile.txt'
+           Deleted '20241009201905_WetBulbTemperature_UnitTestReport.txt'
+   STATUS: Set to retain '5' excel reports at 'C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\excelreports'
+           Retained '20241015103140_WetBulbTemperature_UnitTestReport.xlsx'
+           Retained '20241015102848_WetBulbTemperature_UnitTestReport.xlsx'
+           Retained '20241010122524_WetBulbTemperature_UnitTestReport.xlsx'
+           Retained '20241010122151_WetBulbTemperature_UnitTestReport.xlsx'
+           Retained '20241009201905_WetBulbTemperature_UnitTestReport.xlsx'
+           Deleted '20241009201629_WetBulbTemperature_UnitTestReport.xlsx'
+   STATUS: Set to retain '5' L5X files at 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-gene
+           ratedfiles'
+   STATUS: Set to retain '5' ACD files at 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-gene
+           ratedfiles'
+           Retained '20241015103140_WetBulbTemperature_WithAOI.ACD'
+           Retained '20241015102848_WetBulbTemperature_WithAOI.ACD'
+           Retained '20241010122524_WetBulbTemperature_WithAOI.ACD'
+           Retained '20241010122151_WetBulbTemperature_WithAOI.ACD'
+           Retained '20241009201905_WetBulbTemperature_WithAOI.ACD'
+           Deleted '20241009201629_WetBulbTemperature_WithAOI.ACD'
+           Deleted '20241009201132_WetBulbTemperature_WithAOI.ACD'
+   STATUS: Set to retain '0' BAK files at 'C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\x-gene
+           ratedfiles'
+           Deleted '20241015103140_WetBulbTemperature_WithAOI.ACD.BAK'
+           Deleted '20241015102848_WetBulbTemperature_WithAOI.ACD.BAK'
+---------------------------------------------------------------------------=[UNIT TEST FINAL RESULT: PASS]=---

@@ -1,0 +1,34 @@
+
+  =========================================================================================================
+==============================================================================================================
+            CI UNIT TESTING STAGE | 10/15/2024 10:28:06 AM (UTC-05:00) Eastern Time (US & Canada)             
+==============================================================================================================
+  ==========================================================================================================
+
+
+----------------------------------------------------------------------------------=[GITHUB & JENKINS INFO]=---
+Test initiated by:                      andre yost
+Tester contact information:             andre.yost@gmail.com
+Git commit hash to be verified:         428u098903825093
+Git commit message to be verified:      commit message!
+Jenkins job being executed:             RA-CI-Jenkinsjob
+Jenkins job build number:               345
+----------------------------------------------------------------------------------------------=[.NET INFO]=---
+Common Language Runtime version:        v4.0.30319
+LDSDK .NET Framework version:           8.0
+Echo SDK .NET Framework version:        6.0
+-----------------------------------------------------------------------------------------=[UNIT TEST INFO]=---
+Input excel workbook file path:         C:\Users\ASYost\Desktop\RA_CICD\2-cicd-config\1-ci-teststage\3-ci-inpu
+                                        texcelworkbooks-forunittestscripts\AOIUnitTestInput_WetBulbTemperature
+                                        .xlsx
+Output excel report file path:          C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\excelreports\2024101510
+                                        2806_WetBulbTemperature_UnitTestReport.xlsx
+Output text report path:                C:\Users\ASYost\Desktop\RA_CICD\3-test-reports\textreports\20241015102
+                                        806_WetBulbTemperature_UnitTestReport.txt
+Unit test target object type:           AOI Definition (L5X)
+File to be tested:                      C:\Users\ASYost\Desktop\RA_CICD\1-PRODUCTION-files\L5Xs\WetBulbTempera
+                                        ture.L5X
+Retain generated ACD files:             True
+Retain generated L5X files:             False
+--------------------------------------------------------------------------------------=[STAGING UNIT TEST]=---
+[10:28:08] START creating & opening ACD application file to be used during testing...

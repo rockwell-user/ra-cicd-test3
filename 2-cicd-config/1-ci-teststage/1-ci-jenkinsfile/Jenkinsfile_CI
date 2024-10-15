@@ -1,0 +1,183 @@
+pipeline {
+    agent any
+    
+    environment {
+        PATH_JENKINS_GITHUB = "C:\\data\\jenkins_home\\workspace\\${env.JOB_NAME}\\"
+        INPUTEXCELFILENAME = 'AOIUnitTestInput_WetBulbTemperature.xlsx'
+        GITHUB_USERNAME = 'rockwell-user'
+        GITHUB_PASSWORD = 'RockwellGithub!'
+        GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
+        GITHUB_REPO_NAME = 'ra-cicd-test3'
+        GITHUB_DEV_BRANCH = 'feature/engr-1'
+        GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
+        DOTNET_VERSION = '8.0'
+        DOTNET_INSTALL_DIR = 'C:\\Program Files\\dotnet'
+        FINAL_TEST_RESULT = ''
+        GITHUB_USER_EMAIL = powershell(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
+        GITHUB_USER_NAME = powershell(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
+        UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
+    }
+
+    stages {
+        stage('Check .NET SDK') {
+            steps {
+                createBanner('STAGE: Check .NET SDK')
+                script {
+                    def dotnetVersionInstalledCMD = bat(
+                        script: 'dotnet --version',
+                        returnStdout: true
+                    ).trim()
+                    def dotnetVersionInstalled_values = dotnetVersionInstalledCMD.split(' ')
+                    def dotnetVersionInstalled = dotnetVersionInstalled_values[2].trim()
+
+                    if (!dotnetVersionInstalled.startsWith(env.DOTNET_VERSION)) {
+                        echo "Installing .NET SDK $DOTNET_VERSION..."
+                        bat label: 'Install .NET SDK %DOTNET_VERSION%',
+                            script: """
+                                mkdir "$DOTNET_INSTALL_DIR"
+                                cd "$DOTNET_INSTALL_DIR"
+                                curl -o dotnet-install.ps1 -L https://dot.net/v1/dotnet-install.ps1
+                                powershell -ExecutionPolicy Bypass -File .\\dotnet-install.ps1 -Channel $DOTNET_VERSION -InstallDir \"$DOTNET_INSTALL_DIR\" -NoPath
+                            """
+                    } else {
+                        echo ".NET SDK $DOTNET_VERSION is already installed."
+                    }
+                }
+            }
+        }
+        stage ('Build') {
+            steps {
+                createBanner('STAGE: Build')
+                echo "Starting Build..."
+
+                script {
+                    bat """
+                        del C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config
+                        git config --global http.sslbackend schannel
+                        cd %PATH_JENKINS_GITHUB%3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool
+                        dotnet build --configuration Release
+                    """
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                createBanner('STAGE: Test')
+                echo "Starting Test..."
+                
+                script {
+                    def message_RecentCommit = powershell(
+                        script: "git log -1 --pretty=format:'%s'",
+                        returnStdout: true
+                    ).trim()
+
+                    def hash_RecentCommit = powershell(
+                        script: "git log -1 --pretty=format:'%H'",
+                        returnStdout: true
+                    ).trim()
+
+                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
+                    
+                    bat(
+                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                    )
+
+                    // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
+                    def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    
+                    // Assigning the value directly to env.FINAL_TEST_RESULT
+                    FINAL_TEST_RESULT = testFinalResult
+
+                    echo "env.FINAL_TEST_RESULT expression: ${env.FINAL_TEST_RESULT}"
+                    echo "testFinalResult expression: ${testFinalResult}"
+                }
+            }
+        }
+        stage('Release') {
+            steps {
+                createBanner('STAGE: Release')
+                script {
+                    echo "FINAL_TEST_RESULT expression: ${FINAL_TEST_RESULT}"
+                    if (FINAL_TEST_RESULT == 'PASS') {
+                        echo 'Test SUCCESS: Start releasing development results...'
+                        def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
+                        def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        echo env.UNIQUE_LABEL
+                        def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
+                        bat """
+                            cd ${env.PATH_JENKINS_GITHUB}
+                            git remote set-url origin ${gitUrl}
+                            git config --global --add safe.directory "*"
+                            git config --global core.autocrlf false
+                            git config --global user.email ${env.GITHUB_USER_EMAIL}
+                            git config --global user.name ${env.GITHUB_USER_NAME}
+                            git checkout -b ${env.GITHUB_DEV_BRANCH}
+                            git add .
+                            git commit -m "${commit_message}"
+                            git push -f origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
+
+                        """
+                        // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
+                        // git checkout --quiet ${env.GITHUB_DEV_BRANCH}
+                        // git add -A
+                        // git commit -m "${commit_message}"
+                    }
+                    else {
+                        echo 'Test FAILURE: Return to Studio 5000 Logix Designer, correct the error, and push a new commit.'
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                createBanner('STAGE: Deploy')
+            }
+        }
+        stage ('Clean Workspace') {
+            steps {
+                createBanner('STAGE: Clean Workspace')
+                //cleanWs()
+            }
+        }
+    }
+}
+
+def createBanner(bannerName) {
+    script {
+        def finalBanner = '-=[' + bannerName + ']=-'
+        echo finalBanner.padRight(160, '-')
+    }
+}
+
+def displayContentsOfMostRecentTextFile(folderPath) {
+    def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
+    if (fileList.size() > 0) {
+        def mostRecentFile = fileList[1]
+        echo "The contents of the most recent test file (${mostRecentFile}):"
+        def fileContents = readFile("${folderPath}\\${mostRecentFile}")
+        echo "${fileContents}"
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+    }
+}
+
+def trimFinalTextReportBanner(folderPath) {
+    def fileList = bat(script: "dir /b /o:-d ${folderPath}", returnStdout: true).trim().split('\r\n')
+    if (fileList.size() > 0) {
+        def mostRecentFilePath = "${folderPath}\\${fileList[1]}"
+
+        // Get file contents
+        def fileContents = readFile(mostRecentFilePath).trim()
+
+        // Get the last 9 characters of the string
+        def lastNineChars = fileContents[-9..-1]
+        
+        // Remove the ']', '=', and '-' characters
+        def result = lastNineChars.replaceAll("[\\]=-]", "")
+        
+        return result
+    } else {
+        echo "No text files found in the folder: ${folderPath}"
+        return "ERROR: no file found."
+    }
+}
