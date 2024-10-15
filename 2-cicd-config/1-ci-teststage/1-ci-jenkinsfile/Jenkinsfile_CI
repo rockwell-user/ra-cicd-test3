@@ -54,7 +54,7 @@ pipeline {
                     bat """
                         del C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config
                         git config --global http.sslbackend schannel
-                        cd %PATH_JENKINS_GITHUB%3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool
+                        cd %PATH_JENKINS_GITHUB%2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool
                         dotnet build --configuration Release
                     """
                 }
@@ -76,14 +76,14 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
-                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
+                    def executable_filePath = "${env.PATH_JENKINS_GITHUB}2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
                     
                     bat(
                         script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}"
                     )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
-                    def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}4-test-reports\\textreports")
+                    def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}3-test-reports\\textreports")
                     
                     // Assigning the value directly to env.FINAL_TEST_RESULT
                     FINAL_TEST_RESULT = testFinalResult
