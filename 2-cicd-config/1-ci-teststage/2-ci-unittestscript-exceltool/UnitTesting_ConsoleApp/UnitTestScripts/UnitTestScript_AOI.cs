@@ -32,8 +32,8 @@ namespace UnitTesting_ConsoleApp.UnitTestScripts
     internal class UnitTestScript_AOI
     {
         // "STATIC VARIABLES" - Use to configure unit test "back-end" setup as desired.
-        public static readonly string chassisName = "AOIUnitTest_Chassis"; // ------------------- Emulated chassis name.
-        public static readonly string controllerName = "AOIUnitTest_Controller"; // ------------- Emulated controller name.
+        public static readonly string chassisName = "AOIUnitTest_Chassis"; // ---------------- Emulated chassis name.
+        public static readonly string controllerName = "AOIUnitTest_Controller"; // ---------- Emulated controller name.
         public static readonly string processorType = "1756-L85E"; // ------------------------ The type of emulated controller used to host test.
         public static readonly string taskName_Cont = "T00_StageAOIUnitTesting"; // ---------- Name of the continuous task in the Studio 5000 application.
         public static readonly string taskName_Event = "T01_RunAOIUnitTest"; // -------------- Name of the event task in the Studio 5000 application.

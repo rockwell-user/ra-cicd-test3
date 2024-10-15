@@ -6,7 +6,7 @@ pipeline {
         INPUTEXCELFILENAME = 'AOIUnitTestInput_WetBulbTemperature.xlsx'
         GITHUB_USERNAME = 'rockwell-user'
         GITHUB_PASSWORD = 'RockwellGithub!'
-        GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
+        //GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
         GITHUB_REPO_NAME = 'ra-cicd-test3'
         GITHUB_DEV_BRANCH = 'feature/engr-1'
         GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
@@ -78,9 +78,9 @@ pipeline {
 
                     def executable_filePath = "${env.PATH_JENKINS_GITHUB}2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\bin\\Release\\net8.0\\UnitTesting_ConsoleApp.exe"
                     
-                    bat(
-                        script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}"
-                    )
+                    // bat(
+                    //     script: "@${executable_filePath} ${env.PATH_JENKINS_GITHUB} ${env.INPUTEXCELFILENAME} \"${env.GITHUB_USER_NAME}\" ${env.GITHUB_USER_EMAIL} \"${message_RecentCommit}\" ${hash_RecentCommit} ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                    // )
 
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}3-test-reports\\textreports")
@@ -100,23 +100,24 @@ pipeline {
                     echo "FINAL_TEST_RESULT expression: ${FINAL_TEST_RESULT}"
                     if (FINAL_TEST_RESULT == 'PASS') {
                         echo 'Test SUCCESS: Start releasing development results...'
-                        def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
-                        def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
+                        //def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
+                        //def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
                         echo env.UNIQUE_LABEL
                         def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
                         bat """
                             cd ${env.PATH_JENKINS_GITHUB}
-                            git remote set-url origin ${gitUrl}
-                            git config --global --add safe.directory "*"
-                            git config --global core.autocrlf false
                             git config --global user.email ${env.GITHUB_USER_EMAIL}
                             git config --global user.name ${env.GITHUB_USER_NAME}
-                            git checkout -b ${env.GITHUB_DEV_BRANCH}
+                            git branch
                             git add .
                             git commit -m "${commit_message}"
                             git push -f origin ${env.GITHUB_DEV_BRANCH}:refs/heads/${env.GITHUB_RELEASE_BRANCH}
 
                         """
+                        // git checkout -b ${env.GITHUB_DEV_BRANCH}
+                        // git config --global --add safe.directory "*"
+                        // git config --global core.autocrlf false
+                        // git remote set-url origin ${gitUrl}
                         // git checkout -b ${env.GITHUB_RELEASE_BRANCH}
                         // git checkout --quiet ${env.GITHUB_DEV_BRANCH}
                         // git add -A
