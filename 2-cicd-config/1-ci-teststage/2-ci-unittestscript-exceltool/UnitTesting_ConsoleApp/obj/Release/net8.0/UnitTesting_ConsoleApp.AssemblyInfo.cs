@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UnitTesting_ConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD:2-cicd-config/1-ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/Release/net8.0/UnitTesting_ConsoleApp.AssemblyInfo.cs
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+858e7a95578bbd9adaf5eb47631ea4c97c5c6ef3")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc52206a03e09770cc4013fb9f2b4a5c9cf1b3ba")]
+>>>>>>> 177096462b29d943281e02e21c954d24c7d25d4f:3-cicd-config/ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/Release/net8.0/UnitTesting_ConsoleApp.AssemblyInfo.cs
 [assembly: System.Reflection.AssemblyProductAttribute("UnitTesting_ConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UnitTesting_ConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

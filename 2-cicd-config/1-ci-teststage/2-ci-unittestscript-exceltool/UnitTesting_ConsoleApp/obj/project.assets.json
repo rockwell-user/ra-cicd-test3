@@ -1896,11 +1896,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD:2-cicd-config/1-ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/project.assets.json
       "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
       "projectName": "UnitTesting_ConsoleApp",
       "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
       "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
       "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\obj\\",
+=======
+      "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
+      "projectName": "UnitTesting_ConsoleApp",
+      "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\UnitTesting_ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+      "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\UnitTesting_ConsoleApp\\obj\\",
+>>>>>>> 177096462b29d943281e02e21c954d24c7d25d4f:3-cicd-config/ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/project.assets.json
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1917,6 +1925,7 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+<<<<<<< HEAD:2-cicd-config/1-ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/project.assets.json
             "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
               "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
             },
@@ -1925,6 +1934,16 @@
             },
             "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
               "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
+=======
+            "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj": {
+              "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\ConsoleFormatter_ClassLibrary\\ConsoleFormatter_ClassLibrary.csproj"
+            },
+            "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj": {
+              "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixDesigner_ClassLibrary\\LogixDesigner_ClassLibrary.csproj"
+            },
+            "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+              "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj"
+>>>>>>> 177096462b29d943281e02e21c954d24c7d25d4f:3-cicd-config/ci-teststage/2-ci-unittestscript-exceltool/UnitTesting_ConsoleApp/obj/project.assets.json
             }
           }
         }

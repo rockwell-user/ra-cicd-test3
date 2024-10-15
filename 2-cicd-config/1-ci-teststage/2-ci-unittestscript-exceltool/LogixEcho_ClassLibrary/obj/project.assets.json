@@ -580,11 +580,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD:2-cicd-config/1-ci-teststage/2-ci-unittestscript-exceltool/LogixEcho_ClassLibrary/obj/project.assets.json
       "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
       "projectName": "LogixEcho_ClassLibrary",
       "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
       "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
       "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
+=======
+      "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+      "projectName": "LogixEcho_ClassLibrary",
+      "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+      "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+      "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\3-cicd-config\\ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
+>>>>>>> 177096462b29d943281e02e21c954d24c7d25d4f:3-cicd-config/ci-teststage/2-ci-unittestscript-exceltool/LogixEcho_ClassLibrary/obj/project.assets.json
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,96 @@
+
+  =========================================================================================================
+==============================================================================================================
+            CI UNIT TESTING STAGE | 10/10/2024 10:26:12 AM (UTC-05:00) Eastern Time (US & Canada)             
+==============================================================================================================
+  ==========================================================================================================
+
+
+----------------------------------------------------------------------------------=[GITHUB & JENKINS INFO]=---
+Test initiated by:                      Andre
+Tester contact information:             Yost
+Git commit hash to be verified:         tweaking
+Git commit message to be verified:      andre.yost@rockwellautomation.com
+Jenkins job being executed:             test
+Jenkins job build number:               script
+----------------------------------------------------------------------------------------------=[.NET INFO]=---
+Common Language Runtime version:        v4.0.30319
+LDSDK .NET Framework version:           8.0
+Echo SDK .NET Framework version:        6.0
+-----------------------------------------------------------------------------------------=[UNIT TEST INFO]=---
+Input excel workbook file path:         C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\3-ci-i
+                                        nputexcelworkbooks-forunittestscripts\AOIUnitTestInput_WetBulbTemperat
+                                        ure.xlsx
+Output excel report file path:          C:\data\jenkins_home\workspace\RA-CI\4-test-reports\excelreports\20241
+                                        010102612_WetBulbTemperature_UnitTestReport.xlsx
+Output text report path:                C:\data\jenkins_home\workspace\RA-CI\4-test-reports\textreports\202410
+                                        10102612_WetBulbTemperature_UnitTestReport.txt
+Unit test target object type:           AOI Definition (L5X)
+File to be tested:                      C:\data\jenkins_home\workspace\RA-CI\2-DEVELOPMENT-files\L5Xs\WetBulbT
+                                        emperature.L5X
+Retain generated ACD files:             True
+Retain generated L5X files:             False
+--------------------------------------------------------------------------------------=[STAGING UNIT TEST]=---
+[10:26:15] START creating & opening ACD application file to be used during testing...
+   STATUS: L5X application file created & opened at 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-tes
+           tstage\X_GeneratedFiles\20241010102612_WetBulbTemperature_NoAOI.L5X'.
+   STATUS: ACD application file created & opened at 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-tes
+           tstage\X_GeneratedFiles\20241010102612_WetBulbTemperature_WithAOI.ACD'.
+---
+[10:26:58] START setting up Factory Talk Logix Echo emulated controller...
+   STATUS: Project communication path specified is 'EmulateEthernet\172.27.137.135'.
+---
+[10:27:01] START preparing ACD application environment for unit test...
+   STATUS: Imported 'C:\data\jenkins_home\workspace\RA-CI\2-DEVELOPMENT-files\L5Xs\WetBulbTemperature.L5X' to 
+           'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010102612_We
+           tBulbTemperature_WithAOI.ACD'.
+   STATUS: Print STATUS messages for AOI.L5X to rung.L5X conversion? Currently set to 'False'. To change,
+           change the value of the 'conversionPrintOut' static variable in the 'UnitTestScript_AOI.cs' file.
+   STATUS: Imported 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010
+           102612_WetBulbTemperature_AOIRoutine.L5X' to 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci
+           -teststage\X_GeneratedFiles\20241010102612_WetBulbTemperature_WithAOI.ACD'.
+---
+[10:27:04] START changing controller to PROGRAM mode...
+   STATUS: SUCCESS changing controller to PROGRAM mode.
+---
+[10:27:05] START downloading ACD file...
+   STATUS: SUCCESS downloading ACD file.
+---
+[10:27:14] START changing controller to TEST mode...
+   STATUS: SUCCESS changing controller to TEST mode.
+---------------------------------------------------------------------=[START WetBulbTemperature UNIT TEST]=---
+   STATUS: Done setting up & formatting output excel test report.
+   STATUS: WetBulbTemperature parameter values set to "Safe State" test case #0, shown below:
+ ┌── Name: EnableIn           | Data Type: BOOL | Usage: Input  |  Value: 0    
+ ├── Name: EnableOut          | Data Type: BOOL | Usage: Output |  Value: 0    
+ ├── Name: Temperature        | Data Type: REAL | Usage: Input  |  Value: 0    
+ ├── Name: RelativeHumidity   | Data Type: REAL | Usage: Input  |  Value: 0    
+ ├── Name: isFahrenheit       | Data Type: BOOL | Usage: Input  |  Value: 0    
+ └── Name: WetBulbTemperature | Data Type: REAL | Usage: Output |  Value: 0    
+[10:27:24] START test case 1/1...
+   STATUS: Parameters set to "Safe State" test case #0.
+   STATUS: Setting input parameter values for test case 1/1.
+           ┌── EnableIn value:                                             0 -> 0
+           ├── Temperature value:                                          0 -> 100
+           ├── RelativeHumidity value:                                     0 -> 50
+           └── isFahrenheit value:                                         0 -> 1
+   STATUS: Progressed controller by 1 clock cycle (1/1).
+     PASS: EnableOut expected value '0' & actual value '0' EQUAL.
+   STATUS: Updated output excel test report with test case 1/1.
+[10:27:41] WetBulbTemperature Unit Test Final Result: PASS
+---
+[10:27:41] START retaining or deleting programmatically generated test components...
+   STATUS: Deleted 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\202410101
+           02612_WetBulbTemperature_NoAOI.L5X'.
+   STATUS: Deleted 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\202410101
+           02612_WetBulbTemperature_AOIRoutine.L5X'.
+   STATUS: Deleted 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\202410101
+           02612_WetBulbTemperature_FullProj.L5X'.
+   STATUS: Retained 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\20241010
+           102612_WetBulbTemperature_WithAOI.ACD'.
+   STATUS: Retained folder 'C:\data\jenkins_home\workspace\RA-CI\3-cicd-config\ci-teststage\X_GeneratedFiles\'
+           .
+   STATUS: Deleted Logix Echo chassis named 'AOIUnitTest_Chassis' & controller named 'AOIUnitTest_Controller'.
+---
+[10:27:42] AOI Unit testing for 'WetBulbTemperature' completed in 00:01:30 (HH:mm:ss).
+---------------------------------------------------------------------------------------=[ENDING UNIT TEST]=---
