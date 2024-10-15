@@ -5,8 +5,6 @@ pipeline {
         PATH_JENKINS_GITHUB = "C:\\data\\jenkins_home\\workspace\\${env.JOB_NAME}\\"
         INPUTEXCELFILENAME = 'AOIUnitTestInput_WetBulbTemperature.xlsx'
         GITHUB_USERNAME = 'rockwell-user'
-        GITHUB_PASSWORD = 'RockwellGithub!'
-        //GITHUB_ACCESTOKEN = 'ghp_dOdXB?WBDWE?MOCfwr0?U2EpQ4?MPEGCwH0UWCCL'
         GITHUB_REPO_NAME = 'ra-cicd-test3'
         GITHUB_DEV_BRANCH = 'feature/engr-1'
         GITHUB_RELEASE_BRANCH = 'release/v1.0.0'
@@ -19,6 +17,17 @@ pipeline {
     }
 
     stages {
+        stage('Checkout Target Branch') {
+            steps {
+                createBanner('STAGE: Checkout ${GITHUB_DEV_BRANCH}')
+                script {
+                    bat """
+                        cd ${env.PATH_JENKINS_GITHUB}
+                        git checkout ${env.GITHUB_DEV_BRANCH}
+                    """
+                }
+            }
+        }
         stage('Check .NET SDK') {
             steps {
                 createBanner('STAGE: Check .NET SDK')
@@ -66,6 +75,18 @@ pipeline {
                 echo "Starting Test..."
                 
                 script {
+
+                    // Get all file names in the specified folder
+                    def fileNames = sh(
+                        script: "ls ${env.FOLDER_PATH}",
+                        returnStdout: true
+                    ).trim().split('\n')
+
+                    // Loop through each file name and echo it
+                    fileNames.each { fileName ->
+                        echo "File: ${fileName}"
+                    }
+
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
                         returnStdout: true
@@ -85,11 +106,8 @@ pipeline {
                     // Get the phrase "PASS" or "FAIL" from the final banner displayed in the text report.
                     def testFinalResult = trimFinalTextReportBanner("${env.PATH_JENKINS_GITHUB}3-test-reports\\textreports")
                     
-                    // Assigning the value directly to env.FINAL_TEST_RESULT
+                    // Assign the test results value directly to FINAL_TEST_RESULT environment variable.
                     FINAL_TEST_RESULT = testFinalResult
-
-                    echo "env.FINAL_TEST_RESULT expression: ${env.FINAL_TEST_RESULT}"
-                    echo "testFinalResult expression: ${testFinalResult}"
                 }
             }
         }
@@ -102,7 +120,6 @@ pipeline {
                         echo 'Test SUCCESS: Start releasing development results...'
                         //def cleaned_token = env.GITHUB_ACCESTOKEN.replaceAll("\\?", "")
                         //def gitUrl = "https://${env.GITHUB_USERNAME}:${cleaned_token}@github.com/${env.GITHUB_USERNAME}/${env.GITHUB_REPO_NAME}.git"
-                        echo env.UNIQUE_LABEL
                         def commit_message = "TEST SUCCESS! | Jenkins job: ${env.JOB_NAME} | Jenkins build #: ${env.BUILD_NUMBER} | Commit hash on which testing was conducted: ${env.GIT_COMMIT}"
                         bat """
                             cd ${env.PATH_JENKINS_GITHUB}
