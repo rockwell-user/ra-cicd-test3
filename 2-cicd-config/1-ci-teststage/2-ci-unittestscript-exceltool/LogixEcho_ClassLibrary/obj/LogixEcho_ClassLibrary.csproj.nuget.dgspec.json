@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {}
+    "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASYost\\Desktop\\RA_CICD\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
+    "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
         "projectName": "LogixEcho_ClassLibrary",
-        "projectPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
-        "packagesPath": "C:\\Users\\ASYost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASYost\\Desktop\\RA_CICD\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
+        "projectPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\LogixEcho_ClassLibrary.csproj",
+        "packagesPath": "C:\\Users\\Jenkins\\.nuget\\packages\\",
+        "outputPath": "C:\\data\\jenkins_home\\workspace\\RA-CI\\2-cicd-config\\1-ci-teststage\\2-ci-unittestscript-exceltool\\LogixEcho_ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASYost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jenkins\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Rockwell Automation SDKs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
