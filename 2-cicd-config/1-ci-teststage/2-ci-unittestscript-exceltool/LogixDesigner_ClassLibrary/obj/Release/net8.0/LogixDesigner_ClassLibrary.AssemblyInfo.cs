@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogixDesigner_ClassLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58dadc180428a0a9db0d3a494d2253bb019122b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+858e7a95578bbd9adaf5eb47631ea4c97c5c6ef3")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogixDesigner_ClassLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogixDesigner_ClassLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
