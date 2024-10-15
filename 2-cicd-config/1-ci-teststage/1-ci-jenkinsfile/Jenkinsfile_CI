@@ -26,6 +26,8 @@ pipeline {
                         returnStatus: true
                     ) == 0
 
+                    echo "branchExists: ${branchExists}"
+
                     if (branchExists) {
                         // Checkout the existing branch
                         bat "git checkout ${env.GITHUB_DEV_BRANCH}"
