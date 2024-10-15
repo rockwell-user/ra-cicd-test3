@@ -76,16 +76,16 @@ pipeline {
                 
                 script {
 
-                    // Get all file names in the specified folder
-                    def fileNames = sh(
-                        script: "ls ${env.FOLDER_PATH}",
-                        returnStdout: true
-                    ).trim().split('\n')
+                    // // Get all file names in the specified folder
+                    // def fileNames = sh(
+                    //     script: "ls ${env.FOLDER_PATH}",
+                    //     returnStdout: true
+                    // ).trim().split('\n')
 
-                    // Loop through each file name and echo it
-                    fileNames.each { fileName ->
-                        echo "File: ${fileName}"
-                    }
+                    // // Loop through each file name and echo it
+                    // fileNames.each { fileName ->
+                    //     echo "File: ${fileName}"
+                    // }
 
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
