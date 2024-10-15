@@ -13,7 +13,7 @@ pipeline {
         FINAL_TEST_RESULT = ''
         GITHUB_USER_EMAIL = powershell(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
         GITHUB_USER_NAME = powershell(script: "git log -1 --pretty=format:'%an'", returnStdout: true).trim()
-        UNIQUE_LABEL = "${BUILD_TAG}-${GIT_COMMIT}"
+        REPO_URL = 'https://github.com/rockwell-user/ra-cicd-test3.git'
     }
 
     stages {
@@ -21,10 +21,23 @@ pipeline {
             steps {
                 createBanner('STAGE: Checkout ${GITHUB_DEV_BRANCH}')
                 script {
-                    bat """
-                        cd ${env.PATH_JENKINS_GITHUB}
-                        git checkout ${env.GITHUB_DEV_BRANCH}
-                    """
+                    def branchExists = bat(
+                        script: "git ls-remote --heads ${env.REPO_URL} ${env.GITHUB_DEV_BRANCH}",
+                        returnStatus: true
+                    ) == 0
+
+                    echo "branchExists: ${branchExists}"
+
+                    if (branchExists) {
+                        // Checkout the existing branch
+                        bat "git checkout ${env.GITHUB_DEV_BRANCH}"
+                        echo "Switched to existing branch ${env.GITHUB_DEV_BRANCH}"
+                    } else {
+                        // Create and checkout the new branch
+                        bat "git checkout -b ${env.GITHUB_DEV_BRANCH}"
+                        bat "git push origin ${env.GITHUB_DEV_BRANCH}"
+                        echo "Created and switched to new branch ${env.GITHUB_DEV_BRANCH}"
+                    }
                 }
             }
         }
@@ -76,16 +89,16 @@ pipeline {
                 
                 script {
 
-                    // Get all file names in the specified folder
-                    def fileNames = sh(
-                        script: "ls ${env.FOLDER_PATH}",
-                        returnStdout: true
-                    ).trim().split('\n')
+                    // // Get all file names in the specified folder
+                    // def fileNames = sh(
+                    //     script: "ls ${env.FOLDER_PATH}",
+                    //     returnStdout: true
+                    // ).trim().split('\n')
 
-                    // Loop through each file name and echo it
-                    fileNames.each { fileName ->
-                        echo "File: ${fileName}"
-                    }
+                    // // Loop through each file name and echo it
+                    // fileNames.each { fileName ->
+                    //     echo "File: ${fileName}"
+                    // }
 
                     def message_RecentCommit = powershell(
                         script: "git log -1 --pretty=format:'%s'",
